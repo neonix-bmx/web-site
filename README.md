@@ -1,12 +1,13 @@
 # BerryMX Neon Metro UI
 
-Modern neon MetroUI inspired landing page with tile grid navigation.
+Multi-page neon Metro UI site with tile grid navigation and SSH-signed admin API.
 
 ## Features
 - Neon purple + dark pink theme
 - Tile grid for projects, software, news, about, contact
 - Frontend pulls data from `/api` with `/data` JSON fallback
 - Admin API protected with SSH signature verification
+- Admin web UI for SEO, pages, projects, and software
 - Site-wide and per-page SEO metadata via `/api/seo` (image/video supported)
 - Page copy editable via `/api/pages`
 
@@ -18,8 +19,10 @@ Modern neon MetroUI inspired landing page with tile grid navigation.
 - `about.html`
 - `contact.html`
 - `admin.html`
+- `admin.js`
 - `styles.css`
 - `app.js`
+- `package.json`
 - `data/`
   - `projects.json`
   - `software.json`
@@ -94,6 +97,18 @@ Admin endpoints:
 - `PUT /api/seo`
 - `PUT /api/pages`
 
+## Admin Panel (Web UI)
+Open `admin.html` from the local server (for Web Crypto support, use `http://localhost`):
+
+1. Click `Yukle` to pull the current payload.
+2. Edit the JSON.
+3. Click `Timestamp` and sign the message shown in the box.
+4. Paste the base64 signature into the form and submit.
+
+For edit forms:
+- Fill `ID` with the item id from the list.
+- The signed path must include the id (example: `/api/projects/<id>`).
+
 ## SSH Admin Auth
 Admin requests are verified by `ssh-keygen -Y verify`. Add your public key to
 `/var/berrymx/keys/allowed_signers`.
@@ -109,7 +124,7 @@ Signing flow:
 1. Prepare the request body, hash it, and build the signed message:
 
 ```bash
-BODY='{"title":"Nova Grid","status":"Live","year":"2024","stack":["Node","React"]}'
+BODY='{"title":"Neon Vitrin","status":"Live","year":"2025","stack":["Node","React"]}'
 BODY_SHA=$(printf "%s" "$BODY" | sha256sum | awk '{print $1}')
 TS=$(date +%s)
 printf "%s\n" "POST\n/api/projects\n$TS\n$BODY_SHA" > /tmp/berrymx-message
@@ -135,6 +150,17 @@ For `PUT /api/about`, sign the exact `/api/about` path.
 For `PUT /api/seo`, sign the exact `/api/seo` path.
 For `PUT /api/pages`, sign the exact `/api/pages` path.
 
+## Content Guide
+Projects (`/api/projects`):
+- `title` (required), `year`, `status`, `stack` (array or comma-separated)
+
+Software / Portfoy (`/api/software`):
+- `name` (required), `type`, `status`
+
+Duyurular (`/api/news`):
+- `title` (required), `date`, `slug`, `summary`
+- SEO fields: `metaTitle`, `metaDescription`, `ogImage`, `ogVideo`, `ogVideoType`, `canonical`
+
 ## SEO Payload
 `/api/seo` accepts global fields and per-page overrides:
 
@@ -148,14 +174,11 @@ For `PUT /api/pages`, sign the exact `/api/pages` path.
   "pages": {
     "projects": {
       "title": "BerryMX | Projeler",
-      "description": "Projects showcase managed via SSH-signed API."
+      "description": "Projects showcase and case studies."
     }
   }
 }
 ```
-
-News items can include SEO fields:
-- `slug`, `summary`, `metaTitle`, `metaDescription`, `ogImage`, `ogVideo`, `ogVideoType`, `canonical`
 
 To preview news-level SEO, open `news.html?slug=your-slug`.
 

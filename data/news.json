@@ -1,34 +1,34 @@
 [
   {
     "id": "news-001",
-    "title": "BerryMX Studio launch in Istanbul",
-    "date": "2024-12-20",
-    "slug": "berrymx-studio-launch-istanbul",
-    "summary": "Studio launch with neon Metro UI focus.",
-    "metaTitle": "BerryMX Studio Launch",
-    "metaDescription": "BerryMX launches its Istanbul studio with a neon Metro UI focus.",
+    "title": "BerryMX Studio Istanbul acildi",
+    "date": "2025-01-12",
+    "slug": "berrymx-studio-istanbul",
+    "summary": "Neon metro vitrin odakli yeni studio.",
+    "metaTitle": "BerryMX Studio Istanbul",
+    "metaDescription": "BerryMX Istanbul studio acilisini duyurdu.",
     "ogImage": "/images/berrymx.png",
-    "ogVideo": "/media/launch.mp4",
+    "ogVideo": "/media/intro.mp4",
     "ogVideoType": "video/mp4"
   },
   {
     "id": "news-002",
-    "title": "Version 2.1 platform update shipped",
-    "date": "2024-12-27",
-    "slug": "platform-update-2-1",
-    "summary": "Performance improvements and new grid controls.",
-    "metaTitle": "Platform Update 2.1",
-    "metaDescription": "Release 2.1 ships with performance improvements and grid controls.",
+    "title": "Vitrin 2.1 guncellemesi yayinda",
+    "date": "2025-02-05",
+    "slug": "vitrin-2-1-guncelleme",
+    "summary": "Grid performans ve animasyon iyilestirmeleri.",
+    "metaTitle": "Vitrin 2.1 Guncellemesi",
+    "metaDescription": "Yeni surum performans ve grid animasyonlarini iyilestirdi.",
     "ogImage": "/images/berrymx.png"
   },
   {
     "id": "news-003",
-    "title": "New partner program opens Q1",
-    "date": "2025-01-05",
-    "slug": "partner-program-q1",
-    "summary": "Partner program expands for Q1 initiatives.",
-    "metaTitle": "Partner Program Q1",
-    "metaDescription": "BerryMX opens its partner program for Q1 initiatives.",
+    "title": "Partner programi Q1 basliyor",
+    "date": "2025-03-01",
+    "slug": "partner-programi-q1",
+    "summary": "Yeni partner programi Q1 ile birlikte aciliyor.",
+    "metaTitle": "Partner Programi Q1",
+    "metaDescription": "BerryMX partner programi Q1 surecinde basliyor.",
     "ogImage": "/images/berrymx.png"
   }
 ]

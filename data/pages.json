@@ -183,6 +183,26 @@
         "kicker": "Sayfalar",
         "badge": "Duzenleme",
         "title": "Sayfa Icerikleri"
+      },
+      "projectsAdd": {
+        "kicker": "Projeler",
+        "badge": "Ekle",
+        "title": "Yeni Proje Ekle"
+      },
+      "projectsEdit": {
+        "kicker": "Projeler",
+        "badge": "Duzenle",
+        "title": "Proje Duzenle"
+      },
+      "softwareAdd": {
+        "kicker": "Yazilimlar",
+        "badge": "Ekle",
+        "title": "Yeni Yazilim Ekle"
+      },
+      "softwareEdit": {
+        "kicker": "Yazilimlar",
+        "badge": "Duzenle",
+        "title": "Yazilim Duzenle"
       }
     }
   }

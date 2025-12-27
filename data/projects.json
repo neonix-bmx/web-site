@@ -1,10 +1,10 @@
 [
   {
     "id": "prj-001",
-    "title": "Nova Grid",
+    "title": "Neon Vitrin",
     "stack": ["Node", "React", "Postgres"],
     "status": "Live",
-    "year": "2024"
+    "year": "2025"
   },
   {
     "id": "prj-002",
@@ -15,8 +15,8 @@
   },
   {
     "id": "prj-003",
-    "title": "Signal Hub",
-    "stack": ["Go", "Redis"],
+    "title": "Atlas Grid",
+    "stack": ["Go", "Redis", "gRPC"],
     "status": "In Progress",
     "year": "2025"
   }

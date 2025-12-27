@@ -229,6 +229,266 @@ Imza mesaji burada gorunecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 4">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.projectsAdd.kicker"
+                >Projeler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.projectsAdd.badge"
+                >Ekle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.projectsAdd.title">Yeni Proje Ekle</h2>
+            <form class="admin-form" data-admin-form data-resource="projects" data-method="POST">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="projectsAddKeyId">Key ID</label>
+                  <input
+                    id="projectsAddKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="projectsAddTimestamp">Timestamp</label>
+                  <input
+                    id="projectsAddTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="projectsAddSignature">Signature (base64)</label>
+                  <input
+                    id="projectsAddSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="projectsAddPayload">Payload (JSON)</label>
+                <textarea id="projectsAddPayload" name="payload" rows="8" required>
+{
+  "title": "Nova Grid",
+  "year": "2024",
+  "status": "Live",
+  "stack": ["Node", "React", "Postgres"]
+}</textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Ekle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+Imza mesaji burada gorunecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 5">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.projectsEdit.kicker"
+                >Projeler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.projectsEdit.badge"
+                >Duzenle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.projectsEdit.title">Proje Duzenle</h2>
+            <form class="admin-form" data-admin-form data-resource="projects" data-method="PUT">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="projectsEditId">Proje ID</label>
+                  <input id="projectsEditId" name="itemId" placeholder="id" required />
+                </div>
+                <div class="admin-field">
+                  <label for="projectsEditKeyId">Key ID</label>
+                  <input
+                    id="projectsEditKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="projectsEditTimestamp">Timestamp</label>
+                  <input
+                    id="projectsEditTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="projectsEditSignature">Signature (base64)</label>
+                  <input
+                    id="projectsEditSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="projectsEditPayload">Payload (JSON)</label>
+                <textarea id="projectsEditPayload" name="payload" rows="8" required>
+{
+  "status": "Live",
+  "stack": ["Node", "React"]
+}</textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="load">
+                  Listeyi Yukle
+                </button>
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Guncelle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+Imza mesaji burada gorunecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 6">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.softwareAdd.kicker"
+                >Yazilimlar</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.softwareAdd.badge"
+                >Ekle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.softwareAdd.title">Yeni Yazilim Ekle</h2>
+            <form class="admin-form" data-admin-form data-resource="software" data-method="POST">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="softwareAddKeyId">Key ID</label>
+                  <input
+                    id="softwareAddKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="softwareAddTimestamp">Timestamp</label>
+                  <input
+                    id="softwareAddTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="softwareAddSignature">Signature (base64)</label>
+                  <input
+                    id="softwareAddSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="softwareAddPayload">Payload (JSON)</label>
+                <textarea id="softwareAddPayload" name="payload" rows="8" required>
+{
+  "name": "Pulse API",
+  "type": "Platform",
+  "status": "Stable"
+}</textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Ekle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+Imza mesaji burada gorunecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 7">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.softwareEdit.kicker"
+                >Yazilimlar</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.softwareEdit.badge"
+                >Duzenle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.softwareEdit.title">Yazilim Duzenle</h2>
+            <form class="admin-form" data-admin-form data-resource="software" data-method="PUT">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="softwareEditId">Yazilim ID</label>
+                  <input id="softwareEditId" name="itemId" placeholder="id" required />
+                </div>
+                <div class="admin-field">
+                  <label for="softwareEditKeyId">Key ID</label>
+                  <input
+                    id="softwareEditKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="softwareEditTimestamp">Timestamp</label>
+                  <input
+                    id="softwareEditTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="softwareEditSignature">Signature (base64)</label>
+                  <input
+                    id="softwareEditSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="softwareEditPayload">Payload (JSON)</label>
+                <textarea id="softwareEditPayload" name="payload" rows="8" required>
+{
+  "status": "Active"
+}</textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="load">
+                  Listeyi Yukle
+                </button>
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Guncelle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+Imza mesaji burada gorunecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
         </section>
 
         <footer class="site-footer">

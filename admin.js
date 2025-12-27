@@ -26,19 +26,30 @@ const setStatus = (form, message, isError = false) => {
 
 const updateMessage = async (form) => {
   const resource = form.dataset.resource;
+  const method = (form.dataset.method || "PUT").toUpperCase();
   const payloadField = form.querySelector("textarea[name=payload]");
   const timestampField = form.querySelector("input[name=timestamp]");
+  const idField = form.querySelector("input[name=itemId]");
   const messageEl = form.querySelector("[data-message]");
   const hashEl = form.querySelector("[data-hash]");
-  if (!payloadField || !timestampField || !messageEl || !hashEl) {
+  if (!resource || !payloadField || !timestampField || !messageEl || !hashEl) {
     return;
   }
-  const payload = payloadField.value.trim();
   const timestamp = timestampField.value.trim();
   if (!timestamp) {
     hashEl.textContent = "-";
     messageEl.textContent = "Timestamp gerekli.";
     return;
+  }
+  const itemId = idField ? idField.value.trim() : "";
+  if (idField && !itemId) {
+    hashEl.textContent = "-";
+    messageEl.textContent = "ID gerekli.";
+    return;
+  }
+  let payload = payloadField.value.trim();
+  if (method === "DELETE") {
+    payload = "";
   }
   const bodyHash = await sha256(payload);
   if (!bodyHash) {
@@ -47,8 +58,8 @@ const updateMessage = async (form) => {
     return;
   }
   hashEl.textContent = bodyHash;
-  const path = `/api/${resource}`;
-  messageEl.textContent = `PUT\n${path}\n${timestamp}\n${bodyHash}\n`;
+  const path = itemId ? `/api/${resource}/${itemId}` : `/api/${resource}`;
+  messageEl.textContent = `${method}\n${path}\n${timestamp}\n${bodyHash}\n`;
 };
 
 const loadPayload = async (form) => {
@@ -78,33 +89,53 @@ const submitPayload = async (form) => {
     return;
   }
   const resource = form.dataset.resource;
+  const method = (form.dataset.method || "PUT").toUpperCase();
   const payloadField = form.querySelector("textarea[name=payload]");
   const keyIdField = form.querySelector("input[name=keyId]");
   const timestampField = form.querySelector("input[name=timestamp]");
   const signatureField = form.querySelector("input[name=signature]");
-  if (!payloadField || !keyIdField || !timestampField || !signatureField) {
+  const itemIdField = form.querySelector("input[name=itemId]");
+  if (
+    !resource ||
+    !payloadField ||
+    !keyIdField ||
+    !timestampField ||
+    !signatureField
+  ) {
+    return;
+  }
+  const itemId = itemIdField ? itemIdField.value.trim() : "";
+  if (itemIdField && !itemId) {
+    setStatus(form, "ID gerekli.", true);
     return;
   }
 
-  const payload = payloadField.value.trim();
-  try {
-    JSON.parse(payload);
-  } catch (error) {
-    setStatus(form, "JSON gecersiz.", true);
-    return;
+  let payload = "";
+  if (method !== "DELETE") {
+    payload = payloadField.value.trim();
+    try {
+      JSON.parse(payload);
+    } catch (error) {
+      setStatus(form, "JSON gecersiz.", true);
+      return;
+    }
   }
 
   setStatus(form, "Gonderiliyor...");
   try {
-    const response = await fetch(`/api/${resource}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "X-SSH-Key-Id": keyIdField.value.trim(),
-        "X-SSH-Timestamp": timestampField.value.trim(),
-        "X-SSH-Signature": signatureField.value.trim(),
-      },
-      body: payload,
+    const headers = {
+      "X-SSH-Key-Id": keyIdField.value.trim(),
+      "X-SSH-Timestamp": timestampField.value.trim(),
+      "X-SSH-Signature": signatureField.value.trim(),
+    };
+    if (method !== "DELETE") {
+      headers["Content-Type"] = "application/json";
+    }
+    const path = itemId ? `/api/${resource}/${itemId}` : `/api/${resource}`;
+    const response = await fetch(path, {
+      method,
+      headers,
+      body: method === "DELETE" ? undefined : payload,
     });
 
     if (!response.ok) {
@@ -122,6 +153,7 @@ const submitPayload = async (form) => {
 adminForms.forEach((form) => {
   const payloadField = form.querySelector("textarea[name=payload]");
   const timestampField = form.querySelector("input[name=timestamp]");
+  const idField = form.querySelector("input[name=itemId]");
   const loadButton = form.querySelector("[data-action=load]");
   const timestampButton = form.querySelector("[data-action=timestamp]");
 
@@ -130,6 +162,9 @@ adminForms.forEach((form) => {
   }
   if (timestampField) {
     timestampField.addEventListener("input", () => updateMessage(form));
+  }
+  if (idField) {
+    idField.addEventListener("input", () => updateMessage(form));
   }
 
   if (loadButton) {

@@ -9,11 +9,11 @@
     "id": "sw-002",
     "name": "Neon CMS",
     "type": "Service",
-    "status": "Release Candidate"
+    "status": "Live"
   },
   {
     "id": "sw-003",
-    "name": "Grid Ops",
+    "name": "Metro Ops",
     "type": "Tooling",
     "status": "Active"
   }
