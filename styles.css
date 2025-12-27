@@ -66,6 +66,15 @@ body::after {
   z-index: 0;
 }
 
+body[data-page="home"]::before {
+  opacity: 0.22;
+  background-size: 140px 140px;
+}
+
+body[data-page="home"]::after {
+  opacity: 0.12;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -184,6 +193,27 @@ img {
   align-items: stretch;
 }
 
+body[data-page="home"] {
+  --tile-glow: 0 14px 36px rgba(108, 46, 170, 0.32),
+    0 0 18px rgba(255, 50, 140, 0.18);
+  background: radial-gradient(
+      circle at 45% 18%,
+      rgba(195, 88, 255, 0.18),
+      transparent 65%
+    ),
+    radial-gradient(
+      circle at 82% 0%,
+      rgba(255, 47, 136, 0.2),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 88% 90%,
+      rgba(99, 245, 255, 0.12),
+      transparent 55%
+    ),
+    linear-gradient(135deg, var(--bg-0) 0%, var(--bg-2) 55%, #14021c 100%);
+}
+
 body[data-page="home"] .hero::before {
   content: "";
   position: absolute;
@@ -193,7 +223,7 @@ body[data-page="home"] .hero::before {
     rgba(255, 47, 136, 0.18),
     transparent 55%
   );
-  opacity: 0.8;
+  opacity: 0.55;
   pointer-events: none;
   z-index: 0;
 }
@@ -214,7 +244,7 @@ body[data-page="home"] .hero::after {
   );
   filter: blur(20px);
   border-radius: 50%;
-  opacity: 0.7;
+  opacity: 0.45;
   pointer-events: none;
   z-index: 0;
 }
@@ -401,6 +431,10 @@ body[data-page="home"] .hero-copy::after {
   background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 45%);
   opacity: 0.6;
   pointer-events: none;
+}
+
+body[data-page="home"] .tile::before {
+  opacity: 0.45;
 }
 
 .tile-hero {
