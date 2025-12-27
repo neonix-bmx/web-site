@@ -1,0 +1,189 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Neon Metro UI",
+      "title": "BerryMX ile kareli, dortgenli dijital vitrin.",
+      "lead": "Projeler, yazilimlar, haberler ve iletisim artik ayri sayfalarda. Neon grid deneyimini tek bakista kesfet.",
+      "chips": ["Neon Purple", "Dark Pink", "Metro Grid"],
+      "ctaPrimary": "Projeleri Gor",
+      "ctaSecondary": "Iletisime Gec"
+    },
+    "metrics": [
+      { "value": "Grid", "label": "Vitrin" },
+      { "value": "Hizli", "label": "Yukleme" },
+      { "value": "SEO", "label": "Duyurular" }
+    ],
+    "preview": {
+      "kicker": "Neon Preview",
+      "badge": "Live",
+      "title": "Grid hareketini tek bakista hisset.",
+      "captionLeft": "Vitrin demosu",
+      "captionRight": "00:42"
+    },
+    "tiles": {
+      "projects": {
+        "kicker": "Projeler",
+        "badge": "Vitrin",
+        "title": "Projeler vitrinini kesfet.",
+        "body": "Case study ve teknoloji detaylari projeler sayfasinda. Yeni projeler hizli vitrine girer.",
+        "cta": "Sayfaya Git"
+      },
+      "software": {
+        "kicker": "Yazilimlar",
+        "badge": "Yonetim",
+        "title": "Urun ve servis portfoyu.",
+        "body": "Surum, lisans ve durum bilgileri tek sayfada."
+      },
+      "news": {
+        "kicker": "Haberler",
+        "badge": "Duyuru",
+        "title": "Guncel duyuru akisi.",
+        "body": "Guncel haberler ve duyurular artik ayri sayfada."
+      },
+      "about": {
+        "kicker": "Hakkimizda",
+        "badge": "Vizyon",
+        "title": "Neon estetik ile islevsel arayuzler.",
+        "body": "MetroUI ilhamli tasarim dili, performans ve SEO odakli yapi ile bulusuyor.",
+        "chips": ["Grid-first", "SEO Ready"]
+      },
+      "contact": {
+        "kicker": "Iletisim",
+        "badge": "7/24",
+        "title": "Yeni projeyi birlikte planlayalim.",
+        "body": "Iletisim formu ve ekip detaylari ayri sayfada. Hemen mesaj birak.",
+        "cta": "Formu Ac"
+      }
+    }
+  },
+  "projects": {
+    "hero": {
+      "eyebrow": "Projeler",
+      "title": "Projeler vitrinini merkezi olarak yonet.",
+      "lead": "Tum projeler burada listelenir. Case study, teknoloji ve durum bilgileri tek bakista gorunur.",
+      "chips": ["Vitrin", "Grid Showcase", "Live Updates"]
+    },
+    "tiles": {
+      "list": {
+        "kicker": "Proje Listesi",
+        "badge": "Vitrin",
+        "title": "Guncel projeler"
+      },
+      "tips": {
+        "kicker": "Ipuclari",
+        "badge": "Vitrin",
+        "title": "Grid vitrin hizli ve net.",
+        "body": "Baslik, yil ve durum bilgisiyle case study akisini kolayca okur."
+      }
+    }
+  },
+  "software": {
+    "hero": {
+      "eyebrow": "Yazilimlar",
+      "title": "Urun ve servis portfoyunu tek sayfada izle.",
+      "lead": "Surum, tip ve durum bilgileri merkezi olarak tutulur. Liste surekli guncel kalir.",
+      "chips": ["Platform", "Service", "Tooling"]
+    },
+    "tiles": {
+      "list": {
+        "kicker": "Portfoy",
+        "badge": "Liste",
+        "title": "Yazilim listesi"
+      },
+      "roadmap": {
+        "kicker": "Oncelik",
+        "badge": "Roadmap",
+        "title": "Surum notlarini netlestir.",
+        "body": "Her urun icin durum ve hedef tarihi belirgin tut."
+      }
+    }
+  },
+  "news": {
+    "hero": {
+      "eyebrow": "Haberler",
+      "title": "Guncel duyuru akisi.",
+      "lead": "Haberler surekli guncellenir ve bu sayfaya akar.",
+      "chips": ["Duyuru Akisi", "Baslik + Tarih", "Grid Feed"]
+    },
+    "tiles": {
+      "feed": {
+        "kicker": "Haber Akisi",
+        "badge": "Guncel",
+        "title": "Son duyurular"
+      },
+      "seo": {
+        "kicker": "Icerik",
+        "badge": "Plan",
+        "title": "Basliklari kisa ve net tut.",
+        "body": "Baslik, tarih ve gorselleri net planla."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Hakkimizda",
+      "title": "Neon estetik ile islevsel arayuzler.",
+      "lead": "MetroUI ilhamli grid anlayisini, performans ve SEO odakli yapiyla birlestiriyoruz. Hedefimiz, markalari tek bakista hatirlanan kareli bir sahnede parlatmak.",
+      "chips": ["MetroUI", "Performance", "SEO Ready"]
+    },
+    "tiles": {
+      "focus": {
+        "kicker": "Odak",
+        "badge": "Vizyon",
+        "title": "Neon estetik, net anlatim."
+      },
+      "stats": {
+        "kicker": "Rakamlar",
+        "badge": "Live",
+        "title": "Guncel istatistikler"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Iletisim",
+      "title": "Yeni projeyi birlikte planlayalim.",
+      "lead": "Mesajini birak, ekip kisa surede geri donsun. Form uzerinden gelen notlar onboarding surecine aktarilir.",
+      "chips": ["7/24", "Neon Destek", "Hizli Geri Donus"]
+    },
+    "tiles": {
+      "form": {
+        "kicker": "Iletisim Formu",
+        "badge": "Aktif",
+        "title": "Proje ihtiyacini paylas"
+      },
+      "office": {
+        "kicker": "Ofis",
+        "badge": "Istanbul",
+        "title": "Yerinde gorusme icin randevu al.",
+        "body": "Istanbul merkezli ekip, yerel ve global projelerde yaninda."
+      },
+      "support": {
+        "kicker": "Destek",
+        "badge": "SLA",
+        "title": "Hizli geri donus",
+        "body": "Kritik istekler icin SLA destek akisi saglanir."
+      }
+    }
+  },
+  "admin": {
+    "hero": {
+      "eyebrow": "Admin",
+      "title": "SSH dogrulamali API uzerinden yonetim.",
+      "lead": "Admin paneli sadece SSH signature ile calisir. Web uzerinden giris yoktur; tum islemler API ile yapilir.",
+      "chips": ["SSH Key", "API Only", "Audit"]
+    },
+    "tiles": {
+      "seo": {
+        "kicker": "SEO",
+        "badge": "Global",
+        "title": "SEO Ayarlari"
+      },
+      "pages": {
+        "kicker": "Sayfalar",
+        "badge": "Duzenleme",
+        "title": "Sayfa Icerikleri"
+      }
+    }
+  }
+}

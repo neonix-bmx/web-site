@@ -1,0 +1,40 @@
+{
+  "siteName": "BerryMX",
+  "title": "BerryMX | Neon Metro UI",
+  "description": "BerryMX neon metro UI inspired studio. Projects, software, news, and contact in a grid.",
+  "keywords": "berrymx, neon, metro ui, projects, software, news",
+  "ogImage": "/images/berrymx.png",
+  "canonicalBase": "https://berrymx.com",
+  "robots": "index,follow",
+  "themeColor": "#5b1c9d",
+  "pages": {
+    "home": {
+      "title": "BerryMX | Neon Metro UI",
+      "description": "Neon metro UI inspired homepage."
+    },
+    "projects": {
+      "title": "BerryMX | Projeler",
+      "description": "Projects showcase and case studies."
+    },
+    "software": {
+      "title": "BerryMX | Yazilimlar",
+      "description": "Software portfolio, status, and releases."
+    },
+    "news": {
+      "title": "BerryMX | Haberler",
+      "description": "News and announcements grid feed."
+    },
+    "about": {
+      "title": "BerryMX | Hakkimizda",
+      "description": "Vision, highlights, and stats from BerryMX."
+    },
+    "contact": {
+      "title": "BerryMX | Iletisim",
+      "description": "Contact BerryMX for new projects and support."
+    },
+    "admin": {
+      "title": "BerryMX | Admin",
+      "description": "SSH-signed API administration workflow."
+    }
+  }
+}

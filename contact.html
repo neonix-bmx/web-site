@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BerryMX iletisim. Neon Metro UI projeleri icin iletisim formu." />
+    <title>BerryMX | Iletisim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="contact">
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">BerryMX</span>
+            <span class="brand-tag">Neon Metro Studio</span>
+          </div>
+        </div>
+        <nav class="nav-tiles">
+          <a class="nav-tile" href="index.html" data-page="home">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
+              </svg>
+            </span>
+            <span class="label">Home</span>
+          </a>
+          <a class="nav-tile" href="projects.html" data-page="projects">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z" />
+              </svg>
+            </span>
+            <span class="label">Projeler</span>
+          </a>
+          <a class="nav-tile" href="software.html" data-page="software">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z" />
+              </svg>
+            </span>
+            <span class="label">Yazilimlar</span>
+          </a>
+          <a class="nav-tile" href="news.html" data-page="news">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z" />
+              </svg>
+            </span>
+            <span class="label">Haberler</span>
+          </a>
+          <a class="nav-tile" href="about.html" data-page="about">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z" />
+              </svg>
+            </span>
+            <span class="label">Hakkimizda</span>
+          </a>
+          <a class="nav-tile is-active" href="contact.html" data-page="contact" aria-current="page">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5" />
+              </svg>
+            </span>
+            <span class="label">Iletisim</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <section class="hero single">
+          <div class="hero-copy">
+            <p class="eyebrow" data-content="contact.hero.eyebrow">Iletisim</p>
+            <h1 data-content="contact.hero.title">
+              Yeni projeyi birlikte planlayalim.
+            </h1>
+            <p class="lead" data-content="contact.hero.lead">
+              Mesajini birak, ekip kisa surede geri donsun. Form uzerinden gelen
+              notlar onboarding surecine aktarilir.
+            </p>
+            <div class="chip-row">
+              <span class="chip" data-content="contact.hero.chips.0">7/24</span>
+              <span class="chip" data-content="contact.hero.chips.1"
+                >Neon Destek</span
+              >
+              <span class="chip" data-content="contact.hero.chips.2"
+                >Hizli Geri Donus</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="tile-grid">
+          <article class="tile span-full" style="--i: 2">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="contact.tiles.form.kicker"
+                >Iletisim Formu</span
+              >
+              <span class="tile-badge" data-content="contact.tiles.form.badge"
+                >Aktif</span
+              >
+            </div>
+            <h2 data-content="contact.tiles.form.title">
+              Proje ihtiyacini paylas
+            </h2>
+            <form class="contact-form">
+              <input
+                type="text"
+                name="name"
+                placeholder="Ad Soyad"
+                aria-label="Ad Soyad"
+                autocomplete="name"
+                required />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-posta"
+                aria-label="E-posta"
+                autocomplete="email"
+                required />
+              <textarea
+                name="message"
+                rows="3"
+                placeholder="Proje notu"
+                aria-label="Proje notu"
+                required></textarea>
+              <button class="btn" type="submit">Mesaj Gonder</button>
+            </form>
+            <div class="contact-info">
+              <span>hello@berrymx.com</span>
+              <span>+90 212 000 00 00</span>
+            </div>
+          </article>
+
+          <article class="tile" style="--i: 3">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="contact.tiles.office.kicker"
+                >Ofis</span
+              >
+              <span class="tile-badge" data-content="contact.tiles.office.badge"
+                >Istanbul</span
+              >
+            </div>
+            <h3 data-content="contact.tiles.office.title">
+              Yerinde gorusme icin randevu al.
+            </h3>
+            <p data-content="contact.tiles.office.body">
+              Istanbul merkezli ekip, yerel ve global projelerde yaninda.
+            </p>
+          </article>
+
+          <article class="tile" style="--i: 4">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="contact.tiles.support.kicker"
+                >Destek</span
+              >
+              <span class="tile-badge" data-content="contact.tiles.support.badge"
+                >SLA</span
+              >
+            </div>
+            <h3 data-content="contact.tiles.support.title">Hizli geri donus</h3>
+            <p data-content="contact.tiles.support.body">
+              Kritik istekler icin SLA destek akisi saglanir.
+            </p>
+          </article>
+        </section>
+
+        <footer class="site-footer">
+          <div class="footer-inner">
+            <span>BerryMX</span>
+            <span>(c) 2025 BerryMX. Tum haklari saklidir.</span>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

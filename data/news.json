@@ -2,16 +2,33 @@
   {
     "id": "news-001",
     "title": "BerryMX Studio launch in Istanbul",
-    "date": "2024-12-20"
+    "date": "2024-12-20",
+    "slug": "berrymx-studio-launch-istanbul",
+    "summary": "Studio launch with neon Metro UI focus.",
+    "metaTitle": "BerryMX Studio Launch",
+    "metaDescription": "BerryMX launches its Istanbul studio with a neon Metro UI focus.",
+    "ogImage": "/images/berrymx.png",
+    "ogVideo": "/media/launch.mp4",
+    "ogVideoType": "video/mp4"
   },
   {
     "id": "news-002",
     "title": "Version 2.1 platform update shipped",
-    "date": "2024-12-27"
+    "date": "2024-12-27",
+    "slug": "platform-update-2-1",
+    "summary": "Performance improvements and new grid controls.",
+    "metaTitle": "Platform Update 2.1",
+    "metaDescription": "Release 2.1 ships with performance improvements and grid controls.",
+    "ogImage": "/images/berrymx.png"
   },
   {
     "id": "news-003",
     "title": "New partner program opens Q1",
-    "date": "2025-01-05"
+    "date": "2025-01-05",
+    "slug": "partner-program-q1",
+    "summary": "Partner program expands for Q1 initiatives.",
+    "metaTitle": "Partner Program Q1",
+    "metaDescription": "BerryMX opens its partner program for Q1 initiatives.",
+    "ogImage": "/images/berrymx.png"
   }
 ]

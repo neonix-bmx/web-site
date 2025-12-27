@@ -1,0 +1,14 @@
+{
+  "title": "Neon estetik ile islevsel arayuzler.",
+  "summary": "MetroUI ilhamli grid anlayisini, performans ve SEO odakli yapiyla birlestiriyoruz. Hedefimiz, markalari tek bakista hatirlanan kareli bir sahnede parlatmak.",
+  "highlights": [
+    "Grid-first tasarim dili",
+    "Performans ve SEO odakli altyapi",
+    "Neon kimlik paketleri"
+  ],
+  "stats": [
+    { "value": "42+", "label": "Aktif Proje" },
+    { "value": "12", "label": "Urun Ailesi" },
+    { "value": "8", "label": "Global Partner" }
+  ]
+}
