@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sw-001",
+    "name": "Pulse API",
+    "type": "Platform",
+    "status": "Stable"
+  },
+  {
+    "id": "sw-002",
+    "name": "Neon CMS",
+    "type": "Service",
+    "status": "Release Candidate"
+  },
+  {
+    "id": "sw-003",
+    "name": "Grid Ops",
+    "type": "Tooling",
+    "status": "Active"
+  }
+]

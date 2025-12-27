@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BerryMX - neon metro UI ilhamli modern web sitesi. Projeler, yazilimlar, haberler ve iletisim tek gridde."
+    />
+    <title>BerryMX | Neon Metro UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">BerryMX</span>
+            <span class="brand-tag">Neon Metro Studio</span>
+          </div>
+        </div>
+        <nav class="nav-tiles">
+          <a class="nav-tile is-active" href="#home">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z"
+                />
+              </svg>
+            </span>
+            <span class="label">Home</span>
+          </a>
+          <a class="nav-tile" href="#projects">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z"
+                />
+              </svg>
+            </span>
+            <span class="label">Projeler</span>
+          </a>
+          <a class="nav-tile" href="#software">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z"
+                />
+              </svg>
+            </span>
+            <span class="label">Yazilimlar</span>
+          </a>
+          <a class="nav-tile" href="#news">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z"
+                />
+              </svg>
+            </span>
+            <span class="label">Haberler</span>
+          </a>
+          <a class="nav-tile" href="#about">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z"
+                />
+              </svg>
+            </span>
+            <span class="label">Hakkimizda</span>
+          </a>
+          <a class="nav-tile" href="#contact">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5"
+                />
+              </svg>
+            </span>
+            <span class="label">Iletisim</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <p class="eyebrow">Kareli, dortgenli, neon bir vitrin</p>
+            <h1>BerryMX ile MetroUI tarzi modern web deneyimi.</h1>
+            <p class="lead">
+              Projeler, yazilimlar ve haberler; hepsi tek bir neon gridde. Admin
+              paneli SSH dogrulamasi ile API uzerinden yonetilir.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Neon Purple</span>
+              <span class="chip">Dark Pink</span>
+              <span class="chip">Metro Grid</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn" href="#projects">Projeleri Gor</a>
+              <a class="btn ghost" href="#contact">Iletisime Gec</a>
+            </div>
+          </div>
+          <div class="tile tile-hero" style="--i: 1">
+            <div class="tile-header">
+              <span class="tile-kicker">Admin Access</span>
+              <span class="tile-badge">SSH + API</span>
+            </div>
+            <h3>Kontrollu, guvenli yonetim katmani.</h3>
+            <ul class="tile-list">
+              <li>SSH anahtar dogrulamasi</li>
+              <li>IP kisitlamali API</li>
+              <li>SEO paneli ile haber akisi</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="tile-grid">
+          <article class="tile span-2" id="projects" style="--i: 2">
+            <div class="tile-header">
+              <span class="tile-kicker">Projeler</span>
+              <span class="tile-badge">Admin Paneli</span>
+            </div>
+            <h2>En yeni projeler tek vitrin.</h2>
+            <p>
+              Proje kartlari admin paneliyle eklenir. Case study, teknoloji ve
+              teslim tarihleri otomatik gorunur.
+            </p>
+            <ul class="tile-list compact" id="projectList">
+              <li>Nova Grid - 2024 - Live</li>
+              <li>Metro Pulse - 2024 - Beta</li>
+              <li>Signal Hub - 2025 - In Progress</li>
+            </ul>
+            <div class="tile-actions">
+              <button class="btn small">Vitrini Ac</button>
+              <button class="btn ghost small">Takim Notlari</button>
+            </div>
+          </article>
+
+          <article class="tile" id="software" style="--i: 3">
+            <div class="tile-header">
+              <span class="tile-kicker">Yazilimlar</span>
+              <span class="tile-badge">Yonetim</span>
+            </div>
+            <h3>Urun ve servis portfoyu.</h3>
+            <ul class="tile-list compact" id="softwareList">
+              <li>Core platform paketleri</li>
+              <li>Ozel entegrasyonlar</li>
+              <li>Surum ve lisans durumu</li>
+            </ul>
+          </article>
+
+          <article class="tile" id="news" style="--i: 4">
+            <div class="tile-header">
+              <span class="tile-kicker">Haberler</span>
+              <span class="tile-badge">SEO Paneli</span>
+            </div>
+            <h3>Guncel duyuru akisi.</h3>
+            <p>SEO panelinden yonetilen haberler otomatik gridde.</p>
+            <div class="news-lines" id="newsList">
+              <span>Yeni isbirligi: 2024 Q4</span>
+              <span>Yazilim surumu 2.1 yayinda</span>
+              <span>Ofis: Istanbul, Besiktas</span>
+            </div>
+          </article>
+
+          <article class="tile span-2 tall" id="about" style="--i: 5">
+            <div class="tile-header">
+              <span class="tile-kicker">Hakkimizda</span>
+              <span class="tile-badge">Vizyon</span>
+            </div>
+            <h2>Neon estetik ile islevsel arayuzler.</h2>
+            <p>
+              MetroUI ilhamli grid anlayisini, performans ve SEO odakli yapiyla
+              birlestiriyoruz. Hedefimiz, markalari tek bakista hatirlanan kareli
+              bir sahnede parlatmak.
+            </p>
+            <div class="stats">
+              <div>
+                <span class="stat-num">42+</span>
+                <span class="stat-label">Aktif Proje</span>
+              </div>
+              <div>
+                <span class="stat-num">12</span>
+                <span class="stat-label">Urun Ailesi</span>
+              </div>
+              <div>
+                <span class="stat-num">8</span>
+                <span class="stat-label">Global Partner</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile" style="--i: 6">
+            <div class="tile-header">
+              <span class="tile-kicker">Insight</span>
+              <span class="tile-badge">Live</span>
+            </div>
+            <h3>MetroUI gece modu mantigi.</h3>
+            <p>Gradient arkaplan ve kareli grid ile surekli hareket hissi.</p>
+            <div class="pulse-bar"></div>
+          </article>
+
+          <article class="tile span-2 span-3" id="contact" style="--i: 7">
+            <div class="tile-header">
+              <span class="tile-kicker">Iletisim</span>
+              <span class="tile-badge">7/24</span>
+            </div>
+            <h2>Yeni projeyi birlikte planlayalim.</h2>
+            <form class="contact-form">
+              <input
+                type="text"
+                name="name"
+                placeholder="Ad Soyad"
+                aria-label="Ad Soyad"
+                autocomplete="name"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-posta"
+                aria-label="E-posta"
+                autocomplete="email"
+              />
+              <textarea
+                name="message"
+                rows="2"
+                placeholder="Proje notu"
+                aria-label="Proje notu"
+              ></textarea>
+              <button class="btn" type="submit">Mesaj Gonder</button>
+            </form>
+            <div class="contact-info">
+              <span>hello@berrymx.com</span>
+              <span>+90 212 000 00 00</span>
+            </div>
+          </article>
+
+          <article class="tile" style="--i: 8">
+            <div class="tile-header">
+              <span class="tile-kicker">Admin Panel</span>
+              <span class="tile-badge">Guvenlik</span>
+            </div>
+            <h3>SSH dogrulamali API girisi.</h3>
+            <p>Yetkili kullanicilar icin tek kapili guvenli panel.</p>
+            <button class="btn ghost small">Dokumani Ac</button>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

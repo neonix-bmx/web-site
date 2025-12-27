@@ -1,0 +1,23 @@
+[
+  {
+    "id": "prj-001",
+    "title": "Nova Grid",
+    "stack": ["Node", "React", "Postgres"],
+    "status": "Live",
+    "year": "2024"
+  },
+  {
+    "id": "prj-002",
+    "title": "Metro Pulse",
+    "stack": ["Next.js", "Edge API"],
+    "status": "Beta",
+    "year": "2024"
+  },
+  {
+    "id": "prj-003",
+    "title": "Signal Hub",
+    "stack": ["Go", "Redis"],
+    "status": "In Progress",
+    "year": "2025"
+  }
+]
