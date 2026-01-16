@@ -10,6 +10,7 @@ Multi-page neon Metro UI site with tile grid navigation and SSH-signed admin API
 - Admin web UI for SEO, pages, projects, and software
 - Site-wide and per-page SEO metadata via `/api/seo` (image/video supported)
 - Page copy editable via `/api/pages`
+- Contact form posts stored via `/api/messages`
 
 ## Structure
 - `index.html`
@@ -33,6 +34,15 @@ Multi-page neon Metro UI site with tile grid navigation and SSH-signed admin API
 - `server/`
   - `index.js`
   - `allowed_signers`
+- `docs/`
+  - `README.md`
+  - `ADMIN.md`
+  - `API.md`
+  - `CONTENT.md`
+  - `DEPLOYMENT.md`
+  - `PAYMENT-POS.md`
+  - `LEGAL-MESAFELI-SATIS.md`
+  - `LEGAL-IPTAL-IADE.md`
 
 ## Admin Storage
 Default admin storage root: `/var/berrymx`
@@ -47,6 +57,17 @@ You can override locations with:
 - `BERRYMX_DATA_DIR`
 - `BERRYMX_KEYS_DIR`
 - `BERRYMX_ALLOWED_SIGNERS`
+
+## /var Setup
+To provision `/var/berrymx` with data, env config, and SSH keys:
+
+```bash
+sudo ./scripts/setup-var.sh
+```
+
+Note: the script copies JSON files only if they do not exist.
+If you want a fresh empty projects list, remove `/var/berrymx/data/projects.json`
+and rerun the script.
 
 ## Quick Start (static)
 Open `index.html` directly or run:
@@ -82,6 +103,7 @@ Public endpoints:
 - `GET /api/about`
 - `GET /api/seo`
 - `GET /api/pages`
+- `GET /api/messages`
 
 Admin endpoints:
 - `POST /api/projects`
@@ -96,6 +118,9 @@ Admin endpoints:
 - `PUT /api/about`
 - `PUT /api/seo`
 - `PUT /api/pages`
+
+Public submit:
+- `POST /api/messages`
 
 ## Admin Panel (Web UI)
 Open `admin.html` from the local server (for Web Crypto support, use `http://localhost`):
@@ -152,14 +177,17 @@ For `PUT /api/pages`, sign the exact `/api/pages` path.
 
 ## Content Guide
 Projects (`/api/projects`):
-- `title` (required), `year`, `status`, `stack` (array or comma-separated)
+- `title` (required), `summary`, `year`, `status`, `stack` (array or comma-separated)
 
 Software / Portfoy (`/api/software`):
-- `name` (required), `type`, `status`
+- `name` (required), `type`, `status`, `downloadUrl`
 
 Duyurular (`/api/news`):
 - `title` (required), `date`, `slug`, `summary`
 - SEO fields: `metaTitle`, `metaDescription`, `ogImage`, `ogVideo`, `ogVideoType`, `canonical`
+
+Mesajlar (`/api/messages`):
+- `name`, `email`, `message`, `phone` (optional)
 
 ## SEO Payload
 `/api/seo` accepts global fields and per-page overrides:

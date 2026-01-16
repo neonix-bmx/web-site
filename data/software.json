@@ -3,18 +3,21 @@
     "id": "sw-001",
     "name": "Pulse API",
     "type": "Platform",
-    "status": "Stable"
+    "status": "Stable",
+    "downloadUrl": "/downloads/pulse-api.zip"
   },
   {
     "id": "sw-002",
     "name": "Neon CMS",
     "type": "Service",
-    "status": "Live"
+    "status": "Live",
+    "downloadUrl": "/downloads/neon-cms.zip"
   },
   {
     "id": "sw-003",
     "name": "Metro Ops",
     "type": "Tooling",
-    "status": "Active"
+    "status": "Active",
+    "downloadUrl": "/downloads/metro-ops.zip"
   }
 ]

@@ -118,11 +118,9 @@
               >
             </div>
             <h2 data-content="projects.tiles.list.title">Guncel projeler</h2>
-            <ul class="tile-list" id="projectList">
-              <li>Neon Vitrin - 2025 - Live - Node / React / Postgres</li>
-              <li>Metro Pulse - 2024 - Beta - Next.js / Edge API</li>
-              <li>Atlas Grid - 2025 - In Progress - Go / Redis / gRPC</li>
-            </ul>
+            <div class="project-grid" id="projectList">
+              <p class="empty-state">Henuz proje yok.</p>
+            </div>
           </article>
 
           <article class="tile" style="--i: 3">
@@ -143,10 +141,24 @@
           </article>
         </section>
 
+        <div class="modal" id="projectModal" aria-hidden="true">
+          <div class="modal-overlay" data-modal-close></div>
+          <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+            <button class="modal-close" type="button" data-modal-close aria-label="Kapat">
+              ×
+            </button>
+            <p class="modal-kicker">Proje</p>
+            <h3 id="projectModalTitle">Proje Detayi</h3>
+            <p id="projectModalSummary"></p>
+            <div class="modal-meta" id="projectModalMeta"></div>
+            <div class="modal-stack" id="projectModalStack"></div>
+          </div>
+        </div>
+
         <footer class="site-footer">
           <div class="footer-inner">
             <span>BCMS</span>
-            <span>(c) 2026 BerryMX. Tum haklari saklidir.</span>
+            <span>(c) 2026 BerryMX</span>
           </div>
         </footer>
       </main>

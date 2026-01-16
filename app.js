@@ -10,9 +10,15 @@ const aboutTitle = document.querySelector("#aboutTitle");
 const aboutSummary = document.querySelector("#aboutSummary");
 const aboutHighlights = document.querySelector("#aboutHighlights");
 const aboutStats = document.querySelector("#aboutStats");
+const projectModal = document.querySelector("#projectModal");
+const projectModalTitle = document.querySelector("#projectModalTitle");
+const projectModalSummary = document.querySelector("#projectModalSummary");
+const projectModalMeta = document.querySelector("#projectModalMeta");
+const projectModalStack = document.querySelector("#projectModalStack");
 const contentTargets = Array.from(
   document.querySelectorAll("[data-content]")
 );
+const isStaticPageContent = document.body?.dataset.pages === "static";
 
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
@@ -74,10 +80,53 @@ if (contactForm) {
       contactForm.reportValidity();
       return;
     }
-    contactForm.classList.add("sent");
     const button = contactForm.querySelector("button[type=\"submit\"]");
-    if (button) {
-      button.textContent = "Gonderildi";
+    const payload = {
+      name: contactForm.querySelector("input[name=\"name\"]")?.value.trim(),
+      email: contactForm.querySelector("input[name=\"email\"]")?.value.trim(),
+      message: contactForm.querySelector("textarea[name=\"message\"]")?.value.trim(),
+    };
+    const sendMessage = async () => {
+      try {
+        const response = await fetch("/api/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+        contactForm.classList.add("sent");
+        if (button) {
+          button.textContent = "Gonderildi";
+        }
+        contactForm.reset();
+      } catch (error) {
+        if (button) {
+          button.textContent = "Tekrar Dene";
+        }
+      }
+    };
+    sendMessage();
+  });
+}
+
+if (projectModal) {
+  projectModal.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!target) {
+      return;
+    }
+    if (
+      target.matches("[data-modal-close]") ||
+      target.classList.contains("modal-overlay")
+    ) {
+      closeProjectModal();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && projectModal.classList.contains("is-open")) {
+      closeProjectModal();
     }
   });
 }
@@ -163,6 +212,14 @@ const formatProject = (project) => {
   return parts.join(" - ");
 };
 
+const formatProjectMeta = (project) => {
+  if (!project) {
+    return "";
+  }
+  const parts = [project.year, project.status].filter(Boolean);
+  return parts.join(" • ");
+};
+
 const formatSoftware = (software) => {
   if (!software) {
     return "";
@@ -184,6 +241,50 @@ const formatHighlight = (highlight) => {
     return "";
   }
   return String(highlight).trim();
+};
+
+const openProjectModal = (project) => {
+  if (!projectModal || !project) {
+    return;
+  }
+  if (projectModalTitle) {
+    projectModalTitle.textContent = project.title ? String(project.title).trim() : "";
+  }
+  if (projectModalSummary) {
+    const summary = project.summary ? String(project.summary).trim() : "";
+    projectModalSummary.textContent = summary;
+    projectModalSummary.style.display = summary ? "block" : "none";
+  }
+  if (projectModalMeta) {
+    const meta = formatProjectMeta(project);
+    projectModalMeta.textContent = meta;
+    projectModalMeta.style.display = meta ? "block" : "none";
+  }
+  if (projectModalStack) {
+    projectModalStack.innerHTML = "";
+    const stackItems = Array.isArray(project.stack) ? project.stack : [];
+    stackItems
+      .map((item) => String(item).trim())
+      .filter(Boolean)
+      .forEach((item) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = item;
+        projectModalStack.appendChild(chip);
+      });
+  }
+  projectModal.classList.add("is-open");
+  projectModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+};
+
+const closeProjectModal = () => {
+  if (!projectModal) {
+    return;
+  }
+  projectModal.classList.remove("is-open");
+  projectModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
 };
 
 const replaceStats = (container, items) => {
@@ -217,6 +318,106 @@ const replaceStats = (container, items) => {
   });
 };
 
+const renderProjects = (container, items) => {
+  if (!container) {
+    return;
+  }
+  container.innerHTML = "";
+  if (!Array.isArray(items) || items.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-state";
+    empty.textContent = "Henuz proje yok.";
+    container.appendChild(empty);
+    return;
+  }
+  const limited = limitItems(items, getLimit(container)) || [];
+  limited.forEach((project) => {
+    if (!project) {
+      return;
+    }
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "project-card";
+    const title = document.createElement("span");
+    title.className = "project-title";
+    title.textContent = project.title ? String(project.title).trim() : "Proje";
+    const meta = document.createElement("span");
+    meta.className = "project-meta";
+    meta.textContent = formatProjectMeta(project);
+    const stack = document.createElement("span");
+    stack.className = "project-stack";
+    const stackItems = Array.isArray(project.stack) ? project.stack : [];
+    stack.textContent = stackItems
+      .map((item) => String(item).trim())
+      .filter(Boolean)
+      .join(" / ");
+    card.appendChild(title);
+    if (meta.textContent) {
+      card.appendChild(meta);
+    }
+    if (stack.textContent) {
+      card.appendChild(stack);
+    }
+    card.addEventListener("click", () => openProjectModal(project));
+    container.appendChild(card);
+  });
+};
+
+const renderSoftware = (container, items) => {
+  if (!container) {
+    return;
+  }
+  if (!Array.isArray(items) || items.length === 0) {
+    return;
+  }
+  container.innerHTML = "";
+  const limited = limitItems(items, getLimit(container)) || [];
+  limited.forEach((software) => {
+    if (!software) {
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "software-item";
+
+    const info = document.createElement("div");
+    info.className = "software-info";
+
+    const name = document.createElement("span");
+    name.className = "software-name";
+    name.textContent = software.name ? String(software.name).trim() : "Yazilim";
+
+    const meta = document.createElement("span");
+    meta.className = "software-meta";
+    meta.textContent = [software.type, software.status]
+      .filter(Boolean)
+      .map((value) => String(value).trim())
+      .join(" • ");
+
+    info.appendChild(name);
+    if (meta.textContent) {
+      info.appendChild(meta);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "software-actions";
+    const downloadUrl = software.downloadUrl
+      ? String(software.downloadUrl).trim()
+      : "";
+    if (downloadUrl) {
+      const download = document.createElement("a");
+      download.className = "btn small";
+      download.href = downloadUrl;
+      download.textContent = "Indir";
+      download.setAttribute("download", "");
+      actions.appendChild(download);
+    }
+
+    row.appendChild(info);
+    row.appendChild(actions);
+    container.appendChild(row);
+  });
+};
+
 const getValueByPath = (source, path) => {
   if (!source || !path) {
     return undefined;
@@ -230,7 +431,12 @@ const getValueByPath = (source, path) => {
 };
 
 const applyPageContent = (pages) => {
-  if (!pages || typeof pages !== "object" || contentTargets.length === 0) {
+  if (
+    isStaticPageContent ||
+    !pages ||
+    typeof pages !== "object" ||
+    contentTargets.length === 0
+  ) {
     return;
   }
   contentTargets.forEach((node) => {
@@ -440,22 +646,14 @@ const loadContent = async () => {
     fetchJsonWithFallback("seo"),
     fetchJsonWithFallback("pages"),
   ]);
-  replaceList(
-    projectList,
-    limitItems(projects, getLimit(projectList)),
-    formatProject
-  );
-  replaceList(
-    softwareList,
-    limitItems(software, getLimit(softwareList)),
-    formatSoftware
-  );
+  renderProjects(projectList, projects);
+  renderSoftware(softwareList, software);
   replaceLines(
     newsList,
     limitItems(news, getLimit(newsList)),
     formatNews
   );
-  if (about) {
+  if (about && !isStaticPageContent) {
     if (aboutTitle && about.title) {
       aboutTitle.textContent = String(about.title).trim();
     }

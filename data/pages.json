@@ -152,11 +152,15 @@
         "badge": "Aktif",
         "title": "Proje ihtiyacini paylas"
       },
+      "info": {
+        "email": "hello@berrymx.com",
+        "phone": "0534 658 34 48"
+      },
       "office": {
         "kicker": "Ofis",
-        "badge": "Istanbul",
+        "badge": "Bodrum",
         "title": "Yerinde gorusme icin randevu al.",
-        "body": "Istanbul merkezli ekip, yerel ve global projelerde yaninda."
+        "body": "Bodrum merkezli ekip, yerel ve global projelerde yaninda."
       },
       "support": {
         "kicker": "Destek",
@@ -174,6 +178,11 @@
       "chips": ["SSH Key", "API Only", "Audit"]
     },
     "tiles": {
+      "auth": {
+        "kicker": "SSH",
+        "badge": "Auth",
+        "title": "SSH Kimlik Bilgileri"
+      },
       "seo": {
         "kicker": "SEO",
         "badge": "Global",
@@ -183,6 +192,11 @@
         "kicker": "Sayfalar",
         "badge": "Duzenleme",
         "title": "Sayfa Icerikleri"
+      },
+      "seoList": {
+        "kicker": "SEO",
+        "badge": "Liste",
+        "title": "SEO Sayfalari"
       },
       "projectsAdd": {
         "kicker": "Projeler",
@@ -194,6 +208,11 @@
         "badge": "Duzenle",
         "title": "Proje Duzenle"
       },
+      "projectsList": {
+        "kicker": "Projeler",
+        "badge": "Liste",
+        "title": "Proje Listesi"
+      },
       "softwareAdd": {
         "kicker": "Yazilimlar",
         "badge": "Ekle",
@@ -203,6 +222,16 @@
         "kicker": "Yazilimlar",
         "badge": "Duzenle",
         "title": "Yazilim Duzenle"
+      },
+      "softwareList": {
+        "kicker": "Yazilimlar",
+        "badge": "Liste",
+        "title": "Yazilim Listesi"
+      },
+      "messages": {
+        "kicker": "Iletisim",
+        "badge": "Mesajlar",
+        "title": "Gelen Mesajlar"
       }
     }
   }

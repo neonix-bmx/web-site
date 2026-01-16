@@ -102,6 +102,42 @@
         </section>
 
         <section class="tile-grid">
+          <article class="tile span-full admin-tile" style="--i: 1">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.auth.kicker"
+                >SSH</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.auth.badge"
+                >Auth</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.auth.title">SSH Kimlik Bilgileri</h2>
+            <form class="admin-form" data-auth-form>
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="globalKeyId">Key ID</label>
+                  <input id="globalKeyId" name="keyId" placeholder="berrymx-admin" />
+                </div>
+                <div class="admin-field">
+                  <label for="globalTimestamp">Timestamp</label>
+                  <input id="globalTimestamp" name="timestamp" placeholder="1700000000" />
+                </div>
+                <div class="admin-field">
+                  <label for="globalSignature">Signature (base64)</label>
+                  <input id="globalSignature" name="signature" placeholder="Base64 signature" />
+                </div>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="button" data-action="apply-auth">
+                  Tum Formlara Uygula
+                </button>
+              </div>
+            </form>
+          </article>
+
           <article class="tile span-2 admin-tile" style="--i: 2">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.seo.kicker"
@@ -167,6 +203,35 @@ Imza mesaji burada gorunecek.</pre>
           </article>
 
           <article class="tile span-2 admin-tile" style="--i: 3">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.seoList.kicker"
+                >SEO</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.seoList.badge"
+                >Liste</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.seoList.title">SEO Sayfalari</h2>
+            <div class="admin-list">
+              <div class="admin-list-header">
+                <span>Sayfa</span>
+                <span>Baslik</span>
+                <span>Aciklama</span>
+              </div>
+              <div class="admin-list-body" data-seo-list></div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn ghost small" type="button" data-action="seo-list-load">
+                Yukle
+              </button>
+              <button class="btn small" type="button" data-action="seo-list-apply">
+                JSONa Uygula
+              </button>
+            </div>
+            <div class="admin-status" data-seo-status></div>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 4">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.pages.kicker"
                 >Sayfalar</span
@@ -271,8 +336,9 @@ Imza mesaji burada gorunecek.</pre>
                 <label for="projectsAddPayload">Payload (JSON)</label>
                 <textarea id="projectsAddPayload" name="payload" rows="8" required>
 {
-  "title": "Nova Grid",
-  "year": "2024",
+  "title": "Neon Vitrin",
+  "summary": "Neon grid vitrin deneyimi icin flagship proje.",
+  "year": "2025",
   "status": "Live",
   "stack": ["Node", "React", "Postgres"]
 }</textarea>
@@ -338,6 +404,7 @@ Imza mesaji burada gorunecek.</pre>
                 <label for="projectsEditPayload">Payload (JSON)</label>
                 <textarea id="projectsEditPayload" name="payload" rows="8" required>
 {
+  "summary": "Guncel grid vitrin akisi.",
   "status": "Live",
   "stack": ["Node", "React"]
 }</textarea>
@@ -362,6 +429,32 @@ Imza mesaji burada gorunecek.</pre>
           </article>
 
           <article class="tile span-2 admin-tile" style="--i: 6">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.projectsList.kicker"
+                >Projeler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.projectsList.badge"
+                >Liste</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.projectsList.title">Proje Listesi</h2>
+            <div class="admin-table" data-projects-list>
+              <div class="admin-table-row admin-table-head">
+                <span>ID</span>
+                <span>Baslik</span>
+                <span>Durum</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn ghost small" type="button" data-action="projects-load">
+                Listeyi Yukle
+              </button>
+            </div>
+            <div class="admin-status" data-projects-status></div>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 8">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.softwareAdd.kicker"
                 >Yazilimlar</span
@@ -404,7 +497,8 @@ Imza mesaji burada gorunecek.</pre>
 {
   "name": "Pulse API",
   "type": "Platform",
-  "status": "Stable"
+  "status": "Stable",
+  "downloadUrl": "/downloads/pulse-api.zip"
 }</textarea>
               </div>
               <div class="admin-actions">
@@ -468,7 +562,8 @@ Imza mesaji burada gorunecek.</pre>
                 <label for="softwareEditPayload">Payload (JSON)</label>
                 <textarea id="softwareEditPayload" name="payload" rows="8" required>
 {
-  "status": "Active"
+  "status": "Active",
+  "downloadUrl": "/downloads/metro-ops.zip"
 }</textarea>
               </div>
               <div class="admin-actions">
@@ -489,12 +584,64 @@ Imza mesaji burada gorunecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 9">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.softwareList.kicker"
+                >Yazilimlar</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.softwareList.badge"
+                >Liste</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.softwareList.title">Yazilim Listesi</h2>
+            <div class="admin-table" data-software-list>
+              <div class="admin-table-row admin-table-head">
+                <span>ID</span>
+                <span>Ad</span>
+                <span>Durum</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn ghost small" type="button" data-action="software-load">
+                Listeyi Yukle
+              </button>
+            </div>
+            <div class="admin-status" data-software-status></div>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 10">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.messages.kicker"
+                >Iletisim</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.messages.badge"
+                >Mesajlar</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.messages.title">Gelen Mesajlar</h2>
+            <div class="admin-table" data-messages-list>
+              <div class="admin-table-row admin-table-head message">
+                <span>Tarih</span>
+                <span>Ad</span>
+                <span>E-posta</span>
+                <span>Mesaj</span>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn ghost small" type="button" data-action="messages-load">
+                Listeyi Yukle
+              </button>
+            </div>
+            <div class="admin-status" data-messages-status></div>
+          </article>
         </section>
 
         <footer class="site-footer">
           <div class="footer-inner">
             <span>BerryMX</span>
-            <span>(c) 2025 BerryMX. Tum haklari saklidir.</span>
+            <span>(c) 2026 BerryMX</span>
           </div>
         </footer>
       </main>

@@ -76,6 +76,7 @@ const apiResources = {
   projects: { file: "projects.json", mode: "collection" },
   software: { file: "software.json", mode: "collection" },
   news: { file: "news.json", mode: "collection" },
+  messages: { file: "messages.json", mode: "collection" },
   about: { file: "about.json", mode: "singleton" },
   seo: { file: "seo.json", mode: "singleton" },
   pages: { file: "pages.json", mode: "singleton" },
@@ -90,6 +91,7 @@ const contentTypes = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".md": "text/markdown; charset=utf-8",
+  ".zip": "application/zip",
 };
 
 const sendJson = (res, status, payload) => {
@@ -243,8 +245,8 @@ const sanitizePayload = (resource, payload, options = {}) => {
     return { cleaned };
   }
   const fields = {
-    projects: ["title", "stack", "status", "year"],
-    software: ["name", "type", "status"],
+    projects: ["title", "summary", "stack", "status", "year"],
+    software: ["name", "type", "status", "downloadUrl"],
     news: [
       "title",
       "date",
@@ -258,6 +260,7 @@ const sanitizePayload = (resource, payload, options = {}) => {
       "canonical",
     ],
     about: ["title", "summary", "highlights", "stats"],
+    messages: ["name", "email", "message", "phone"],
     seo: [
       "title",
       "description",
@@ -282,6 +285,7 @@ const sanitizePayload = (resource, payload, options = {}) => {
     software: ["name"],
     news: ["title"],
     about: ["title"],
+    messages: ["name", "email", "message"],
     seo: [],
   };
 
@@ -611,10 +615,13 @@ const handleApi = async (req, res, pathname) => {
     return;
   }
 
-  const auth = verifyAdmin(req, pathname, body);
-  if (!auth.ok) {
-    sendJson(res, 401, { error: auth.error });
-    return;
+  const isPublicMessagePost = resource === "messages" && req.method === "POST";
+  if (!isPublicMessagePost) {
+    const auth = verifyAdmin(req, pathname, body);
+    if (!auth.ok) {
+      sendJson(res, 401, { error: auth.error });
+      return;
+    }
   }
 
   if (req.method === "DELETE") {
