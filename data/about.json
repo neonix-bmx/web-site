@@ -1,14 +1,35 @@
 {
-  "title": "Neon estetik ile islevsel arayuzler.",
-  "summary": "MetroUI ilhamli grid anlayisini, performans ve SEO odakli yapiyla birlestiriyoruz. Hedefimiz, markalari tek bakista hatirlanan kareli bir sahnede parlatmak.",
-  "highlights": [
-    "Grid-first tasarim dili",
-    "Performans ve SEO odakli altyapi",
-    "Neon kimlik paketleri"
-  ],
-  "stats": [
-    { "value": "42+", "label": "Aktif Proje" },
-    { "value": "12", "label": "Urun Ailesi" },
-    { "value": "8", "label": "Global Partner" }
-  ]
+  "hero": {
+    "eyebrow": "Hakkimizda",
+    "title": "BerryMX: FOSS ve Mühendislik Etiklerine Sadık Profesyonel Ekip",
+    "lead": "BerryMX, 2025 Kasım ayında kurulan, BCMS (Berry Creative Media Solutions) olarak FOSS (Free and Open Source Software) felsefesini benimseyen ve mühendislik etiklerine sadık bir şirketiz. Medya, web siteleri ve bilişim çözümleri alanında 1 yıllık deneyimi ile profesyonel hizmetler sunuyoruz. Hedefimiz, yenilikçi ve etik tabanlı teknolojiler kullanarak müşterilerimize sürdürülebilir ve yüksek performanslı çözümler sunmaktır.",
+    "chips": ["FOSS", "Mühendislik Etikleri", "Sürdürülebilir Teknoloji"]
+  },
+  "tiles": {
+    "focus": {
+      "kicker": "Vizyonumuz",
+      "badge": "FOSS ve Etik",
+      "title": "Mühendislik Etiklerine Sadık, Açık Kaynak Felsefesiyle Çalışan Profesyonel Ekip",
+      "body": "BerryMX, **açık kaynak** ve **etik tabanlı mühendislik** ilkelerine dayalı çözümler sunar. **Sürdürülebilir teknoloji** ve **mükemmel performans** odaklı projeler geliştiririz."
+    },
+    "stats": {
+      "kicker": "Deneyim ve Başarılarımız",
+      "badge": "Live",
+      "title": "Deneyim ve Başarılarımız",
+      "stats": [
+        { "value": "1+", "label": "Yıl Deneyim" },
+        { "value": "3+", "label": "Tamamlanmış Proje" },
+        { "value": "1", "label": "Sektörde Partner" }
+      ]
+    },
+    "highlights": {
+      "title": "Öne Çıkan Noktalarımız",
+      "items": [
+        "FOSS (Free and Open Source Software) felsefesine sadık kalma",
+        "10+ yıllık medya ve bilişim sektörü deneyimi",
+        "Mühendislik etiklerine uygun profesyonel çözümler",
+        "Yüksek performanslı ve sürdürülebilir teknolojiler"
+      ]
+    }
+  }
 }
