@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="BerryMX - neon metro UI ilhamli modern web sitesi. Projeler, yazilimlar, haberler ve iletisim ayri sayfalarda." />
+      content="BerryMX - neon metro UI ilhamlı modern web sitesi. Projeler, yazılımlar, haberler ve iletişim ayrı sayfalarda." />
     <title>BerryMX | Neon Metro UI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,8 +20,8 @@
         <div class="brand">
           <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
           <div class="brand-text">
-            <span class="brand-name">BerryMX</span>
-            <span class="brand-tag">Neon Metro Studio</span>
+            <span class="brand-name">Berry Compute & Media Solutions</span>
+            <span class="brand-tag">It's FOSS</span>
           </div>
         </div>
         <nav class="nav-tiles">
@@ -32,7 +32,7 @@
                   d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
               </svg>
             </span>
-            <span class="label">Home</span>
+            <span class="label" data-content="nav.home">Ana Sayfa</span>
           </a>
           <a class="nav-tile" href="projects.html" data-page="projects">
             <span class="icon">
@@ -41,7 +41,7 @@
                   d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z" />
               </svg>
             </span>
-            <span class="label">Projeler</span>
+            <span class="label" data-content="nav.projects">Projeler</span>
           </a>
           <a class="nav-tile" href="software.html" data-page="software">
             <span class="icon">
@@ -50,7 +50,7 @@
                   d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z" />
               </svg>
             </span>
-            <span class="label">Yazilimlar</span>
+            <span class="label" data-content="nav.software">Yazılımlar</span>
           </a>
           <a class="nav-tile" href="news.html" data-page="news">
             <span class="icon">
@@ -59,7 +59,7 @@
                   d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z" />
               </svg>
             </span>
-            <span class="label">Haberler</span>
+            <span class="label" data-content="nav.news">Haberler</span>
           </a>
           <a class="nav-tile" href="about.html" data-page="about">
             <span class="icon">
@@ -68,7 +68,7 @@
                   d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z" />
               </svg>
             </span>
-            <span class="label">Hakkimizda</span>
+            <span class="label" data-content="nav.about">Hakkımızda</span>
           </a>
           <a class="nav-tile" href="contact.html" data-page="contact">
             <span class="icon">
@@ -77,21 +77,88 @@
                   d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5" />
               </svg>
             </span>
-            <span class="label">Iletisim</span>
+            <span class="label" data-content="nav.contact">İletişim</span>
+          </a>
+          <a
+            class="nav-tile"
+            href="https://community.berrymx.com"
+            data-href="links.forum"
+            target="_blank"
+            rel="noopener"
+            data-page="forum">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 5v-5H6a2 2 0 0 1-2-2V6Z" />
+              </svg>
+            </span>
+            <span class="label" data-content="nav.forum">Topluluk</span>
           </a>
         </nav>
+        <div class="lang-switch" aria-label="Dil Seçimi">
+          <button class="lang-btn" type="button" data-lang-toggle="tr">TR</button>
+          <button class="lang-btn" type="button" data-lang-toggle="en">EN</button>
+        </div>
       </aside>
 
       <main class="main">
         <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow" data-content="home.hero.eyebrow">BCMS</p>
+            <p class="eyebrow" data-content="home.hero.eyebrow">BCMS Studio</p>
             <h1 data-content="home.hero.title">
-              It's FOSS
+              BerryMX ile kareli, dörtgenli dijital vitrin.
             </h1>
             <p class="lead" data-content="home.hero.lead">
-             2025 Kasım ayında kurulan BCMS, medya, web siteleri ve bilişim çözümleri alanında profesyonel hizmetler sunuyor. Müşterilerimize yenilikçi ve işlevsel dijital deneyimler sunmak için Metro UI ilhamlı tasarımlar ve yüksek performanslı teknolojiler kullanıyoruz. Ayrıca özgür ve açık kaynaklı yazılım felsefesiyle FOSS dünyasında öncü olmaktadır.
+              BCMS; medya, web ve yazılım çözümlerini FOSS felsefesiyle birleştirir.
+              Metro grid estetiğiyle hızlı, net ve hatırlanan markalar üretir.
             </p>
+            <div class="hero-intro">
+              <div class="intro-header">
+                <span class="tile-kicker" data-content="home.hero.intro.kicker"
+                  >Tanıtım</span
+                >
+                <span class="tile-badge" data-content="home.hero.intro.badge"
+                  >BCMS</span
+                >
+              </div>
+              <p class="intro-body" data-content="home.hero.intro.body">
+                Fikirden yayına kadar tüm dijital üretim zinciri tek merkezde.
+              </p>
+              <div class="intro-grid">
+                <div>
+                  <span class="intro-title" data-content="home.hero.intro.items.0.title"
+                    >Donanım & Low Level</span
+                  >
+                  <span class="intro-text" data-content="home.hero.intro.items.0.text"
+                    >Düşük seviyeli yazılım ve donanım geliştirme.</span
+                  >
+                </div>
+                <div>
+                  <span class="intro-title" data-content="home.hero.intro.items.1.title"
+                    >Web</span
+                  >
+                  <span class="intro-text" data-content="home.hero.intro.items.1.text"
+                    >UI/UX, performans, backend ve SEO.</span
+                  >
+                </div>
+                <div>
+                  <span class="intro-title" data-content="home.hero.intro.items.2.title"
+                    >Yazılım</span
+                  >
+                  <span class="intro-text" data-content="home.hero.intro.items.2.text"
+                    >API, panel ve otomasyon.</span
+                  >
+                </div>
+                <div>
+                  <span class="intro-title" data-content="home.hero.intro.items.3.title"
+                    >Prodüksüyon</span
+                  >
+                  <span class="intro-text" data-content="home.hero.intro.items.3.text"
+                    >Oyun ve Stable Diffusion prodüksüyonları.</span
+                  >
+                </div>
+              </div>
+            </div>
             <div class="hero-metrics">
               <div>
                 <span class="metric-value" data-content="home.metrics.0.value"
@@ -103,10 +170,10 @@
               </div>
               <div>
                 <span class="metric-value" data-content="home.metrics.1.value"
-                  >Hizli</span
+                    >Hızlı</span
                 >
                 <span class="metric-label" data-content="home.metrics.1.label"
-                  >Yukleme</span
+                    >Yükleme</span
                 >
               </div>
               <div>
@@ -119,18 +186,22 @@
               </div>
             </div>
             <div class="chip-row">
-            <span class="chip" data-content="home.hero.chips.0">Profesyonel Medya</span>
-            <span class="chip" data-content="home.hero.chips.1">Web Çözümleri</span>
-            <span class="chip" data-content="home.hero.chips.2">Bilişim Teknolojileri</span>
-            <span class="chip" data-content="home.hero.chips.2">Bilgisayar Oyunları</span>
-          </div>
+              <span class="chip" data-content="home.hero.chips.0"
+                >FOSS Studio</span
+              >
+              <span class="chip" data-content="home.hero.chips.1"
+                >Metro UI</span
+              >
+              <span class="chip" data-content="home.hero.chips.2"
+                >Dijital Vitrin</span
+              >
             </div>
             <div class="hero-actions">
               <a class="btn" href="projects.html" data-content="home.hero.ctaPrimary"
-                >Projeleri Gor</a
+                >Projeleri Gör</a
               >
               <a class="btn ghost" href="contact.html" data-content="home.hero.ctaSecondary"
-                >Iletisime Gec</a
+                >İletişime Geç</a
               >
             </div>
           </div>
@@ -173,11 +244,11 @@
               >
             </div>
             <h2 data-content="home.tiles.projects.title">
-              Projeler vitrinini kesfet.
+              Projeler vitrinini keşfet.
             </h2>
             <p data-content="home.tiles.projects.body">
-              Case study ve teknoloji detaylari projeler sayfasinda. Yeni
-              projeler hizli vitrine girer.
+              Case study ve teknoloji detayları projeler sayfasında. Yeni
+              projeler hızlı vitrine girer.
             </p>
             <div class="tile-actions">
               <span class="btn small" data-content="home.tiles.projects.cta"
@@ -189,17 +260,17 @@
           <a class="tile tile-link" href="software.html" style="--i: 3">
             <div class="tile-header">
               <span class="tile-kicker" data-content="home.tiles.software.kicker"
-                >Yazilimlar</span
+                >Yazılımlar</span
               >
               <span class="tile-badge" data-content="home.tiles.software.badge"
-                >Yonetim</span
+                >Yönetim</span
               >
             </div>
             <h3 data-content="home.tiles.software.title">
-              Urun ve servis portfoyu.
+              Ürün ve servis portföyü.
             </h3>
             <p data-content="home.tiles.software.body">
-              Surum, lisans ve durum bilgileri tek sayfada.
+              Sürüm, lisans ve durum bilgileri tek sayfada.
             </p>
           </a>
 
@@ -212,27 +283,27 @@
                 >Duyuru</span
               >
             </div>
-            <h3 data-content="home.tiles.news.title">Guncel duyuru akisi.</h3>
+            <h3 data-content="home.tiles.news.title">Güncel duyuru akışı.</h3>
             <p data-content="home.tiles.news.body">
-              Guncel haberler ve duyurular artik ayri sayfada.
+              Güncel haberler ve duyurular artık ayrı sayfada.
             </p>
           </a>
 
           <a class="tile tile-link tall" href="about.html" style="--i: 5">
             <div class="tile-header">
               <span class="tile-kicker" data-content="home.tiles.about.kicker"
-                >Hakkimizda</span
+                >Hakkımızda</span
               >
               <span class="tile-badge" data-content="home.tiles.about.badge"
                 >Vizyon</span
               >
             </div>
             <h3 data-content="home.tiles.about.title">
-              Neon estetik ile islevsel arayuzler.
+              Neon estetik ile işlevsel arayüzler.
             </h3>
             <p data-content="home.tiles.about.body">
-              MetroUI ilhamli tasarim dili, performans ve SEO odakli yapi ile
-              bulusuyor.
+              MetroUI ilhamlı tasarım dili, performans ve SEO odaklı yapı ile
+              buluşuyor.
             </p>
             <div class="chip-row">
               <span class="chip" data-content="home.tiles.about.chips.0"
@@ -247,21 +318,21 @@
           <a class="tile tile-link span-full" href="contact.html" style="--i: 6">
             <div class="tile-header">
               <span class="tile-kicker" data-content="home.tiles.contact.kicker"
-                >Iletisim</span
+                >İletişim</span
               >
               <span class="tile-badge" data-content="home.tiles.contact.badge"
                 >7/24</span
               >
             </div>
             <h2 data-content="home.tiles.contact.title">
-              Yeni projeyi birlikte planlayalim.
+              Yeni projeyi birlikte planlayalım.
             </h2>
             <p data-content="home.tiles.contact.body">
-              Iletisim formu ve ekip detaylari ayri sayfada. Hemen mesaj birak.
+              İletişim formu ve ekip detayları ayrı sayfada. Hemen mesaj bırak.
             </p>
             <div class="tile-actions">
               <span class="btn small" data-content="home.tiles.contact.cta"
-                >Formu Ac</span
+                >Formu Aç</span
               >
             </div>
           </a>

@@ -1,237 +1,879 @@
 {
+  "nav": {
+    "home": {
+      "tr": "Ana Sayfa",
+      "en": "Home"
+    },
+    "projects": {
+      "tr": "Projeler",
+      "en": "Projects"
+    },
+    "software": {
+      "tr": "Yazılımlar",
+      "en": "Software"
+    },
+    "news": {
+      "tr": "Haberler",
+      "en": "News"
+    },
+    "about": {
+      "tr": "Hakkımızda",
+      "en": "About"
+    },
+    "contact": {
+      "tr": "İletişim",
+      "en": "Contact"
+    },
+    "forum": {
+      "tr": "Topluluk",
+      "en": "Community"
+    }
+  },
+  "links": {
+    "forum": "https://community.berrymx.com"
+  },
   "home": {
     "hero": {
-      "eyebrow": "Neon Metro UI",
-      "title": "BerryMX ile kareli, dortgenli dijital vitrin.",
-      "lead": "Projeler, yazilimlar, haberler ve iletisim artik ayri sayfalarda. Neon grid deneyimini tek bakista kesfet.",
-      "chips": ["Neon Purple", "Dark Pink", "Metro Grid"],
-      "ctaPrimary": "Projeleri Gor",
-      "ctaSecondary": "Iletisime Gec"
+      "eyebrow": "BCMS Studio",
+      "title": {
+        "tr": "BerryMX ile kareli, dörtgenli dijital vitrin.",
+        "en": "BerryMX: a grid-first, squared digital showcase."
+      },
+      "lead": {
+        "tr": "BCMS; medya, web ve yazılım çözümlerini FOSS felsefesiyle birleştirir. Metro grid estetiğiyle hızlı, net ve hatırlanan markalar üretir.",
+        "en": "BCMS blends media, web, and software solutions with a FOSS philosophy. With metro grid aesthetics, it delivers fast, clear, memorable brands."
+      },
+      "intro": {
+        "kicker": {
+          "tr": "Tanıtım",
+          "en": "Overview"
+        },
+        "badge": "BCMS",
+        "body": {
+          "tr": "Fikirden yayına kadar tüm dijital üretim zinciri tek merkezde.",
+          "en": "From idea to launch, the entire digital production chain lives in one hub."
+        },
+        "items": [
+          {
+            "title": {
+              "tr": "Medya",
+              "en": "Media"
+            },
+            "text": {
+              "tr": "Prod, tasarım ve marka dili.",
+              "en": "Production, design, and brand language."
+            }
+          },
+          {
+            "title": {
+              "tr": "Web",
+              "en": "Web"
+            },
+            "text": {
+              "tr": "UI/UX, performans ve SEO.",
+              "en": "UI/UX, performance, and SEO."
+            }
+          },
+          {
+            "title": {
+              "tr": "Yazılım",
+              "en": "Software"
+            },
+            "text": {
+              "tr": "API, panel ve otomasyon.",
+              "en": "APIs, panels, and automation."
+            }
+          },
+          {
+            "title": {
+              "tr": "Prodüksiyon",
+              "en": "Production"
+            },
+            "text": {
+              "tr": "Oyun ve Stable Diffusion prodüksiyonları.",
+              "en": "Game and Stable Diffusion production."
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "tr": "FOSS Studio",
+          "en": "FOSS Studio"
+        },
+        {
+          "tr": "Metro UI",
+          "en": "Metro UI"
+        },
+        {
+          "tr": "Dijital Vitrin",
+          "en": "Digital Showcase"
+        }
+      ],
+      "ctaPrimary": {
+        "tr": "Projeleri Gör",
+        "en": "View Projects"
+      },
+      "ctaSecondary": {
+        "tr": "İletişime Geç",
+        "en": "Contact Us"
+      }
     },
     "metrics": [
-      { "value": "Grid", "label": "Vitrin" },
-      { "value": "Hizli", "label": "Yukleme" },
-      { "value": "SEO", "label": "Duyurular" }
+      {
+        "value": {
+          "tr": "Grid",
+          "en": "Grid"
+        },
+        "label": {
+          "tr": "Vitrin",
+          "en": "Showcase"
+        }
+      },
+      {
+        "value": {
+          "tr": "Hızlı",
+          "en": "Fast"
+        },
+        "label": {
+          "tr": "Yükleme",
+          "en": "Loading"
+        }
+      },
+      {
+        "value": {
+          "tr": "SEO",
+          "en": "SEO"
+        },
+        "label": {
+          "tr": "Duyurular",
+          "en": "Announcements"
+        }
+      }
     ],
     "preview": {
-      "kicker": "Neon Preview",
-      "badge": "Live",
-      "title": "Grid hareketini tek bakista hisset.",
-      "captionLeft": "Vitrin demosu",
+      "kicker": {
+        "tr": "Neon Önizleme",
+        "en": "Neon Preview"
+      },
+      "badge": {
+        "tr": "Canlı",
+        "en": "Live"
+      },
+      "title": {
+        "tr": "Grid hareketini tek bakışta hisset.",
+        "en": "Feel the grid motion at a glance."
+      },
+      "captionLeft": {
+        "tr": "Vitrin demosu",
+        "en": "Showcase demo"
+      },
       "captionRight": "00:42"
     },
     "tiles": {
       "projects": {
-        "kicker": "Projeler",
-        "badge": "Vitrin",
-        "title": "Projeler vitrinini kesfet.",
-        "body": "Case study ve teknoloji detaylari projeler sayfasinda. Yeni projeler hizli vitrine girer.",
-        "cta": "Sayfaya Git"
+        "kicker": {
+          "tr": "Projeler",
+          "en": "Projects"
+        },
+        "badge": {
+          "tr": "Vitrin",
+          "en": "Showcase"
+        },
+        "title": {
+          "tr": "Projeler vitrinini keşfet.",
+          "en": "Discover the project showcase."
+        },
+        "body": {
+          "tr": "Case study ve teknoloji detayları projeler sayfasında. Yeni projeler hızlı vitrine girer.",
+          "en": "Case studies and tech details live on the projects page. New work enters the showcase quickly."
+        },
+        "cta": {
+          "tr": "Sayfaya Git",
+          "en": "Open Page"
+        }
       },
       "software": {
-        "kicker": "Yazilimlar",
-        "badge": "Yonetim",
-        "title": "Urun ve servis portfoyu.",
-        "body": "Surum, lisans ve durum bilgileri tek sayfada."
+        "kicker": {
+          "tr": "Yazılımlar",
+          "en": "Software"
+        },
+        "badge": {
+          "tr": "Yönetim",
+          "en": "Management"
+        },
+        "title": {
+          "tr": "Ürün ve servis portföyü.",
+          "en": "Product and service portfolio."
+        },
+        "body": {
+          "tr": "Sürüm, lisans ve durum bilgileri tek sayfada.",
+          "en": "Version, license, and status details in one place."
+        }
       },
       "news": {
-        "kicker": "Haberler",
-        "badge": "Duyuru",
-        "title": "Guncel duyuru akisi.",
-        "body": "Guncel haberler ve duyurular artik ayri sayfada."
+        "kicker": {
+          "tr": "Haberler",
+          "en": "News"
+        },
+        "badge": {
+          "tr": "Duyuru",
+          "en": "Announcements"
+        },
+        "title": {
+          "tr": "Güncel duyuru akışı.",
+          "en": "Latest announcement stream."
+        },
+        "body": {
+          "tr": "Güncel haberler ve duyurular artık ayrı sayfada.",
+          "en": "Latest news and announcements now live on a separate page."
+        }
       },
       "about": {
-        "kicker": "Hakkimizda",
-        "badge": "Vizyon",
-        "title": "Neon estetik ile islevsel arayuzler.",
-        "body": "MetroUI ilhamli tasarim dili, performans ve SEO odakli yapi ile bulusuyor.",
-        "chips": ["Grid-first", "SEO Ready"]
+        "kicker": {
+          "tr": "Hakkımızda",
+          "en": "About"
+        },
+        "badge": {
+          "tr": "Vizyon",
+          "en": "Vision"
+        },
+        "title": {
+          "tr": "Neon estetik ile işlevsel arayüzler.",
+          "en": "Functional interfaces with neon aesthetics."
+        },
+        "body": {
+          "tr": "MetroUI ilhamlı tasarım dili, performans ve SEO odaklı yapı ile buluşuyor.",
+          "en": "MetroUI-inspired design meets performance and SEO-first structure."
+        },
+        "chips": [
+          {
+            "tr": "Grid-first",
+            "en": "Grid-first"
+          },
+          {
+            "tr": "SEO Ready",
+            "en": "SEO Ready"
+          }
+        ]
       },
       "contact": {
-        "kicker": "Iletisim",
-        "badge": "7/24",
-        "title": "Yeni projeyi birlikte planlayalim.",
-        "body": "Iletisim formu ve ekip detaylari ayri sayfada. Hemen mesaj birak.",
-        "cta": "Formu Ac"
+        "kicker": {
+          "tr": "İletişim",
+          "en": "Contact"
+        },
+        "badge": {
+          "tr": "7/24",
+          "en": "24/7"
+        },
+        "title": {
+          "tr": "Yeni projeyi birlikte planlayalım.",
+          "en": "Let's plan the next project together."
+        },
+        "body": {
+          "tr": "İletişim formu ve ekip detayları ayrı sayfada. Hemen mesaj bırak.",
+          "en": "The contact form and team details live on a separate page. Leave a message now."
+        },
+        "cta": {
+          "tr": "Formu Aç",
+          "en": "Open Form"
+        }
       }
     }
   },
   "projects": {
     "hero": {
-      "eyebrow": "Projeler",
-      "title": "Projeler vitrinini merkezi olarak yonet.",
-      "lead": "Tum projeler burada listelenir. Case study, teknoloji ve durum bilgileri tek bakista gorunur.",
-      "chips": ["Vitrin", "Grid Showcase", "Live Updates"]
+      "eyebrow": {
+        "tr": "Projeler",
+        "en": "Projects"
+      },
+      "title": {
+        "tr": "Projeler vitrinini merkezi olarak yönet.",
+        "en": "Manage the project showcase from one hub."
+      },
+      "lead": {
+        "tr": "Tüm projeler burada listelenir. Case study, teknoloji ve durum bilgileri tek bakışta görünür.",
+        "en": "All projects are listed here. Case studies, tech, and status details are visible at a glance."
+      },
+      "chips": [
+        {
+          "tr": "Vitrin",
+          "en": "Showcase"
+        },
+        {
+          "tr": "Grid Showcase",
+          "en": "Grid Showcase"
+        },
+        {
+          "tr": "Live Updates",
+          "en": "Live Updates"
+        }
+      ]
     },
     "tiles": {
       "list": {
-        "kicker": "Proje Listesi",
-        "badge": "Vitrin",
-        "title": "Guncel projeler"
+        "kicker": {
+          "tr": "Proje Listesi",
+          "en": "Project List"
+        },
+        "badge": {
+          "tr": "Vitrin",
+          "en": "Showcase"
+        },
+        "title": {
+          "tr": "Güncel projeler",
+          "en": "Current projects"
+        }
       },
       "tips": {
-        "kicker": "Ipuclari",
-        "badge": "Vitrin",
-        "title": "Grid vitrin hizli ve net.",
-        "body": "Baslik, yil ve durum bilgisiyle case study akisini kolayca okur."
+        "kicker": {
+          "tr": "İpuçları",
+          "en": "Tips"
+        },
+        "badge": {
+          "tr": "Vitrin",
+          "en": "Showcase"
+        },
+        "title": {
+          "tr": "Grid vitrin hızlı ve net.",
+          "en": "The grid showcase is fast and clear."
+        },
+        "body": {
+          "tr": "Başlık, yıl ve durum bilgisiyle case study akışını kolayca okur.",
+          "en": "With title, year, and status, the case study flow is easy to scan."
+        }
+      }
+    },
+    "modal": {
+      "kicker": {
+        "tr": "Proje",
+        "en": "Project"
       }
     }
   },
   "software": {
     "hero": {
-      "eyebrow": "Yazilimlar",
-      "title": "Urun ve servis portfoyunu tek sayfada izle.",
-      "lead": "Surum, tip ve durum bilgileri merkezi olarak tutulur. Liste surekli guncel kalir.",
-      "chips": ["Platform", "Service", "Tooling"]
+      "eyebrow": {
+        "tr": "Yazılımlar",
+        "en": "Software"
+      },
+      "title": {
+        "tr": "Ürün ve servis portföyünü tek sayfada izle.",
+        "en": "Track the product and service portfolio on one page."
+      },
+      "lead": {
+        "tr": "Sürüm, tip ve durum bilgileri merkezi olarak tutulur. Liste sürekli güncel kalır.",
+        "en": "Version, type, and status stay centralized. The list stays up to date."
+      },
+      "chips": [
+        {
+          "tr": "Platform",
+          "en": "Platform"
+        },
+        {
+          "tr": "Servis",
+          "en": "Service"
+        },
+        {
+          "tr": "Araçlar",
+          "en": "Tooling"
+        }
+      ]
     },
     "tiles": {
       "list": {
-        "kicker": "Portfoy",
-        "badge": "Liste",
-        "title": "Yazilim listesi"
+        "kicker": {
+          "tr": "Portföy",
+          "en": "Portfolio"
+        },
+        "badge": {
+          "tr": "Liste",
+          "en": "List"
+        },
+        "title": {
+          "tr": "Yazılım listesi",
+          "en": "Software list"
+        }
       },
       "roadmap": {
-        "kicker": "Oncelik",
-        "badge": "Roadmap",
-        "title": "Surum notlarini netlestir.",
-        "body": "Her urun icin durum ve hedef tarihi belirgin tut."
+        "kicker": {
+          "tr": "Öncelik",
+          "en": "Priority"
+        },
+        "badge": {
+          "tr": "Roadmap",
+          "en": "Roadmap"
+        },
+        "title": {
+          "tr": "Sürüm notlarını netleştir.",
+          "en": "Clarify release notes."
+        },
+        "body": {
+          "tr": "Her ürün için durum ve hedef tarihi belirgin tut.",
+          "en": "Keep status and target dates clear for each product."
+        }
       }
     }
   },
   "news": {
     "hero": {
-      "eyebrow": "Haberler",
-      "title": "Guncel duyuru akisi.",
-      "lead": "Haberler surekli guncellenir ve bu sayfaya akar.",
-      "chips": ["Duyuru Akisi", "Baslik + Tarih", "Grid Feed"]
+      "eyebrow": {
+        "tr": "Haberler",
+        "en": "News"
+      },
+      "title": {
+        "tr": "Güncel duyuru akışı.",
+        "en": "Latest announcement stream."
+      },
+      "lead": {
+        "tr": "Haberler sürekli güncellenir ve bu sayfaya akar.",
+        "en": "News updates continuously and flows into this page."
+      },
+      "chips": [
+        {
+          "tr": "Duyuru Akışı",
+          "en": "Announcement Flow"
+        },
+        {
+          "tr": "Başlık + Tarih",
+          "en": "Title + Date"
+        },
+        {
+          "tr": "Grid Feed",
+          "en": "Grid Feed"
+        }
+      ]
     },
     "tiles": {
       "feed": {
-        "kicker": "Haber Akisi",
-        "badge": "Guncel",
-        "title": "Son duyurular"
+        "kicker": {
+          "tr": "Haber Akışı",
+          "en": "News Feed"
+        },
+        "badge": {
+          "tr": "Güncel",
+          "en": "Current"
+        },
+        "title": {
+          "tr": "Son duyurular",
+          "en": "Latest updates"
+        }
       },
       "seo": {
-        "kicker": "Icerik",
-        "badge": "Plan",
-        "title": "Basliklari kisa ve net tut.",
-        "body": "Baslik, tarih ve gorselleri net planla."
+        "kicker": {
+          "tr": "İçerik",
+          "en": "Content"
+        },
+        "badge": {
+          "tr": "Plan",
+          "en": "Plan"
+        },
+        "title": {
+          "tr": "Başlıkları kısa ve net tut.",
+          "en": "Keep titles short and clear."
+        },
+        "body": {
+          "tr": "Başlık, tarih ve görselleri net planla.",
+          "en": "Plan titles, dates, and visuals clearly."
+        }
+      }
+    },
+    "modal": {
+      "kicker": {
+        "tr": "Haber",
+        "en": "News"
       }
     }
   },
   "about": {
     "hero": {
-      "eyebrow": "Hakkimizda",
-      "title": "Neon estetik ile islevsel arayuzler.",
-      "lead": "MetroUI ilhamli grid anlayisini, performans ve SEO odakli yapiyla birlestiriyoruz. Hedefimiz, markalari tek bakista hatirlanan kareli bir sahnede parlatmak.",
-      "chips": ["MetroUI", "Performance", "SEO Ready"]
+      "eyebrow": {
+        "tr": "Hakkımızda",
+        "en": "About"
+      },
+      "title": {
+        "tr": "Neon estetik ile işlevsel arayüzler.",
+        "en": "Functional interfaces with neon aesthetics."
+      },
+      "lead": {
+        "tr": "MetroUI ilhamlı grid anlayışını, performans ve SEO odaklı yapıyla birleştiriyoruz. Hedefimiz, markaları tek bakışta hatırlanan kareli bir sahnede parlatmak.",
+        "en": "We combine a MetroUI-inspired grid with performance- and SEO-first structure. Our goal is to make brands shine on a squared stage remembered at a glance."
+      },
+      "chips": [
+        {
+          "tr": "MetroUI",
+          "en": "MetroUI"
+        },
+        {
+          "tr": "Performans",
+          "en": "Performance"
+        },
+        {
+          "tr": "SEO Ready",
+          "en": "SEO Ready"
+        }
+      ]
     },
     "tiles": {
       "focus": {
-        "kicker": "Odak",
-        "badge": "Vizyon",
-        "title": "Neon estetik, net anlatim."
+        "kicker": {
+          "tr": "Odak",
+          "en": "Focus"
+        },
+        "badge": {
+          "tr": "Vizyon",
+          "en": "Vision"
+        },
+        "title": {
+          "tr": "Neon estetik, net anlatım.",
+          "en": "Neon aesthetics, clear storytelling."
+        }
       },
       "stats": {
-        "kicker": "Rakamlar",
-        "badge": "Live",
-        "title": "Guncel istatistikler"
+        "kicker": {
+          "tr": "Rakamlar",
+          "en": "Stats"
+        },
+        "badge": {
+          "tr": "Live",
+          "en": "Live"
+        },
+        "title": {
+          "tr": "Güncel istatistikler",
+          "en": "Current stats"
+        }
       }
     }
   },
   "contact": {
     "hero": {
-      "eyebrow": "Iletisim",
-      "title": "Yeni projeyi birlikte planlayalim.",
-      "lead": "Mesajini birak, ekip kisa surede geri donsun. Form uzerinden gelen notlar onboarding surecine aktarilir.",
-      "chips": ["7/24", "Neon Destek", "Hizli Geri Donus"]
+      "eyebrow": {
+        "tr": "İletişim",
+        "en": "Contact"
+      },
+      "title": {
+        "tr": "Yeni projeyi birlikte planlayalım.",
+        "en": "Let's plan the next project together."
+      },
+      "lead": {
+        "tr": "Mesajını bırak, ekip kısa sürede geri dönsün. Form üzerinden gelen notlar onboarding sürecine aktarılır.",
+        "en": "Leave a message and the team will get back quickly. Notes from the form flow into onboarding."
+      },
+      "chips": [
+        {
+          "tr": "7/24",
+          "en": "24/7"
+        },
+        {
+          "tr": "Neon Destek",
+          "en": "Neon Support"
+        },
+        {
+          "tr": "Hızlı Geri Dönüş",
+          "en": "Fast Response"
+        }
+      ]
+    },
+    "form": {
+      "name": {
+        "tr": "Ad Soyad",
+        "en": "Full Name"
+      },
+      "email": {
+        "tr": "E-posta",
+        "en": "Email"
+      },
+      "message": {
+        "tr": "Proje notu",
+        "en": "Project note"
+      },
+      "submit": {
+        "tr": "Mesaj Gönder",
+        "en": "Send Message"
+      }
     },
     "tiles": {
       "form": {
-        "kicker": "Iletisim Formu",
-        "badge": "Aktif",
-        "title": "Proje ihtiyacini paylas"
+        "kicker": {
+          "tr": "İletişim Formu",
+          "en": "Contact Form"
+        },
+        "badge": {
+          "tr": "Aktif",
+          "en": "Active"
+        },
+        "title": {
+          "tr": "Proje ihtiyacını paylaş",
+          "en": "Share your project need"
+        }
       },
       "info": {
         "email": "hello@berrymx.com",
         "phone": "0534 658 34 48"
       },
       "office": {
-        "kicker": "Ofis",
-        "badge": "Bodrum",
-        "title": "Yerinde gorusme icin randevu al.",
-        "body": "Bodrum merkezli ekip, yerel ve global projelerde yaninda."
+        "kicker": {
+          "tr": "Ofis",
+          "en": "Office"
+        },
+        "badge": {
+          "tr": "Bodrum",
+          "en": "Bodrum"
+        },
+        "title": {
+          "tr": "Yerinde görüşme için randevu al.",
+          "en": "Book an on-site meeting."
+        },
+        "body": {
+          "tr": "Bodrum merkezli ekip, yerel ve global projelerde yanında.",
+          "en": "Bodrum-based team supporting local and global projects."
+        }
       },
       "support": {
-        "kicker": "Destek",
-        "badge": "SLA",
-        "title": "Hizli geri donus",
-        "body": "Kritik istekler icin SLA destek akisi saglanir."
+        "kicker": {
+          "tr": "Destek",
+          "en": "Support"
+        },
+        "badge": {
+          "tr": "SLA",
+          "en": "SLA"
+        },
+        "title": {
+          "tr": "Hızlı geri dönüş",
+          "en": "Fast response"
+        },
+        "body": {
+          "tr": "Kritik istekler için SLA destek akışı sağlanır.",
+          "en": "SLA-backed support flow for critical requests."
+        }
       }
     }
   },
   "admin": {
     "hero": {
-      "eyebrow": "Admin",
-      "title": "SSH dogrulamali API uzerinden yonetim.",
-      "lead": "Admin paneli sadece SSH signature ile calisir. Web uzerinden giris yoktur; tum islemler API ile yapilir.",
-      "chips": ["SSH Key", "API Only", "Audit"]
+      "eyebrow": {
+        "tr": "Admin",
+        "en": "Admin"
+      },
+      "title": {
+        "tr": "SSH doğrulamalı API üzerinden yönetim.",
+        "en": "Manage through an SSH-signed API."
+      },
+      "lead": {
+        "tr": "Admin paneli sadece SSH signature ile çalışır. Web üzerinden giriş yoktur; tüm işlemler API ile yapılır.",
+        "en": "The admin panel works only with SSH signatures. No web login; all actions run through the API."
+      },
+      "chips": [
+        {
+          "tr": "SSH Anahtar",
+          "en": "SSH Key"
+        },
+        {
+          "tr": "Sadece API",
+          "en": "API Only"
+        },
+        {
+          "tr": "Denetim",
+          "en": "Audit"
+        }
+      ]
     },
     "tiles": {
       "auth": {
-        "kicker": "SSH",
-        "badge": "Auth",
-        "title": "SSH Kimlik Bilgileri"
+        "kicker": {
+          "tr": "SSH",
+          "en": "SSH"
+        },
+        "badge": {
+          "tr": "Auth",
+          "en": "Auth"
+        },
+        "title": {
+          "tr": "SSH Kimlik Bilgileri",
+          "en": "SSH Credentials"
+        }
       },
       "seo": {
-        "kicker": "SEO",
-        "badge": "Global",
-        "title": "SEO Ayarlari"
+        "kicker": {
+          "tr": "SEO",
+          "en": "SEO"
+        },
+        "badge": {
+          "tr": "Global",
+          "en": "Global"
+        },
+        "title": {
+          "tr": "SEO Ayarları",
+          "en": "SEO Settings"
+        }
       },
       "pages": {
-        "kicker": "Sayfalar",
-        "badge": "Duzenleme",
-        "title": "Sayfa Icerikleri"
+        "kicker": {
+          "tr": "Sayfalar",
+          "en": "Pages"
+        },
+        "badge": {
+          "tr": "Düzenleme",
+          "en": "Edit"
+        },
+        "title": {
+          "tr": "Sayfa İçerikleri",
+          "en": "Page Content"
+        }
       },
       "seoList": {
-        "kicker": "SEO",
-        "badge": "Liste",
-        "title": "SEO Sayfalari"
+        "kicker": {
+          "tr": "SEO",
+          "en": "SEO"
+        },
+        "badge": {
+          "tr": "Liste",
+          "en": "List"
+        },
+        "title": {
+          "tr": "SEO Sayfaları",
+          "en": "SEO Pages"
+        }
       },
       "projectsAdd": {
-        "kicker": "Projeler",
-        "badge": "Ekle",
-        "title": "Yeni Proje Ekle"
+        "kicker": {
+          "tr": "Projeler",
+          "en": "Projects"
+        },
+        "badge": {
+          "tr": "Ekle",
+          "en": "Add"
+        },
+        "title": {
+          "tr": "Yeni Proje Ekle",
+          "en": "Add New Project"
+        }
       },
       "projectsEdit": {
-        "kicker": "Projeler",
-        "badge": "Duzenle",
-        "title": "Proje Duzenle"
+        "kicker": {
+          "tr": "Projeler",
+          "en": "Projects"
+        },
+        "badge": {
+          "tr": "Düzenle",
+          "en": "Edit"
+        },
+        "title": {
+          "tr": "Proje Düzenle",
+          "en": "Edit Project"
+        }
       },
       "projectsList": {
-        "kicker": "Projeler",
-        "badge": "Liste",
-        "title": "Proje Listesi"
+        "kicker": {
+          "tr": "Projeler",
+          "en": "Projects"
+        },
+        "badge": {
+          "tr": "Liste",
+          "en": "List"
+        },
+        "title": {
+          "tr": "Proje Listesi",
+          "en": "Project List"
+        }
       },
       "softwareAdd": {
-        "kicker": "Yazilimlar",
-        "badge": "Ekle",
-        "title": "Yeni Yazilim Ekle"
+        "kicker": {
+          "tr": "Yazılımlar",
+          "en": "Software"
+        },
+        "badge": {
+          "tr": "Ekle",
+          "en": "Add"
+        },
+        "title": {
+          "tr": "Yeni Yazılım Ekle",
+          "en": "Add New Software"
+        }
       },
       "softwareEdit": {
-        "kicker": "Yazilimlar",
-        "badge": "Duzenle",
-        "title": "Yazilim Duzenle"
+        "kicker": {
+          "tr": "Yazılımlar",
+          "en": "Software"
+        },
+        "badge": {
+          "tr": "Düzenle",
+          "en": "Edit"
+        },
+        "title": {
+          "tr": "Yazılım Düzenle",
+          "en": "Edit Software"
+        }
       },
       "softwareList": {
-        "kicker": "Yazilimlar",
-        "badge": "Liste",
-        "title": "Yazilim Listesi"
+        "kicker": {
+          "tr": "Yazılımlar",
+          "en": "Software"
+        },
+        "badge": {
+          "tr": "Liste",
+          "en": "List"
+        },
+        "title": {
+          "tr": "Yazılım Listesi",
+          "en": "Software List"
+        }
       },
       "messages": {
-        "kicker": "Iletisim",
-        "badge": "Mesajlar",
-        "title": "Gelen Mesajlar"
+        "kicker": {
+          "tr": "İletişim",
+          "en": "Contact"
+        },
+        "badge": {
+          "tr": "Mesajlar",
+          "en": "Messages"
+        },
+        "title": {
+          "tr": "Gelen Mesajlar",
+          "en": "Incoming Messages"
+        }
+      },
+      "newsAdd": {
+        "kicker": {
+          "tr": "Haberler",
+          "en": "News"
+        },
+        "badge": {
+          "tr": "Ekle",
+          "en": "Add"
+        },
+        "title": {
+          "tr": "Yeni Haber Ekle",
+          "en": "Add News"
+        }
+      },
+      "newsEdit": {
+        "kicker": {
+          "tr": "Haberler",
+          "en": "News"
+        },
+        "badge": {
+          "tr": "Düzenle",
+          "en": "Edit"
+        },
+        "title": {
+          "tr": "Haber Düzenle",
+          "en": "Edit News"
+        }
+      },
+      "newsList": {
+        "kicker": {
+          "tr": "Haberler",
+          "en": "News"
+        },
+        "badge": {
+          "tr": "Liste",
+          "en": "List"
+        },
+        "title": {
+          "tr": "Haber Listesi",
+          "en": "News List"
+        }
       }
     }
   }

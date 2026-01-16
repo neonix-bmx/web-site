@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="BerryMX hakkimizda. Neon Metro UI vizyonu, highlight ve istatistikler." />
-    <title>BerryMX | Hakkimizda</title>
+      content="BerryMX hakkımızda. Neon Metro UI vizyonu, highlight ve istatistikler." />
+    <title>BerryMX | Hakkımızda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,14 +14,14 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body data-page="about" data-pages="static">
+  <body data-page="about">
     <div class="shell">
       <aside class="sidebar">
         <div class="brand">
           <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
           <div class="brand-text">
-            <span class="brand-name">BerryMX</span>
-            <span class="brand-tag">Neon Metro Studio</span>
+            <span class="brand-name">Berry Compute & Media Solutions</span>
+            <span class="brand-tag">It's FOSS</span>
           </div>
         </div>
         <nav class="nav-tiles">
@@ -32,7 +32,7 @@
                   d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
               </svg>
             </span>
-            <span class="label">Home</span>
+            <span class="label" data-content="nav.home">Ana Sayfa</span>
           </a>
           <a class="nav-tile" href="projects.html" data-page="projects">
             <span class="icon">
@@ -41,7 +41,7 @@
                   d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z" />
               </svg>
             </span>
-            <span class="label">Projeler</span>
+            <span class="label" data-content="nav.projects">Projeler</span>
           </a>
           <a class="nav-tile" href="software.html" data-page="software">
             <span class="icon">
@@ -50,7 +50,7 @@
                   d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z" />
               </svg>
             </span>
-            <span class="label">Yazilimlar</span>
+            <span class="label" data-content="nav.software">Yazılımlar</span>
           </a>
           <a class="nav-tile" href="news.html" data-page="news">
             <span class="icon">
@@ -59,7 +59,7 @@
                   d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z" />
               </svg>
             </span>
-            <span class="label">Haberler</span>
+            <span class="label" data-content="nav.news">Haberler</span>
           </a>
           <a class="nav-tile is-active" href="about.html" data-page="about" aria-current="page">
             <span class="icon">
@@ -68,7 +68,7 @@
                   d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z" />
               </svg>
             </span>
-            <span class="label">Hakkimizda</span>
+            <span class="label" data-content="nav.about">Hakkımızda</span>
           </a>
           <a class="nav-tile" href="contact.html" data-page="contact">
             <span class="icon">
@@ -77,9 +77,28 @@
                   d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5" />
               </svg>
             </span>
-            <span class="label">Iletisim</span>
+            <span class="label" data-content="nav.contact">İletişim</span>
+          </a>
+          <a
+            class="nav-tile"
+            href="https://community.berrymx.com"
+            data-href="links.forum"
+            target="_blank"
+            rel="noopener"
+            data-page="forum">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 5v-5H6a2 2 0 0 1-2-2V6Z" />
+              </svg>
+            </span>
+            <span class="label" data-content="nav.forum">Topluluk</span>
           </a>
         </nav>
+        <div class="lang-switch" aria-label="Dil Seçimi">
+          <button class="lang-btn" type="button" data-lang-toggle="tr">TR</button>
+          <button class="lang-btn" type="button" data-lang-toggle="en">EN</button>
+        </div>
       </aside>
 
       <main class="main">
@@ -87,10 +106,11 @@
           <div class="hero-copy">
             <p class="eyebrow" data-content="about.hero.eyebrow">Hakkımızda</p>
             <h1 id="aboutTitle" data-content="about.hero.title">
-              Neon estetik ile islevsel arayuzler.
+              Neon estetik ile işlevsel arayüzler.
             </h1>
             <p class="lead" id="aboutSummary" data-content="about.hero.lead">
-              BerryMX, açık kaynak (FOSS) ve mühendislik etiklerine dayalı çözümler sunan bir şirket olarak, medya, web ve bilişim teknolojileri alanında 1+ yıllık deneyim ile müşterilerimize sürdürülebilir, yüksek performanslı ve etik tabanlı çözümler sunuyoruz. Yenilikçi teknolojiler ve kullanıcı odaklı tasarım ilkelerimizle, her projeyi güçlü bir vizyon ile hayata geçiriyoruz.
+              BerryMX, açık kaynak (FOSS) ve mühendislik etiklerine dayalı çözümler sunan bir şirket olarak medya, web ve bilişim teknolojileri alanında deneyim ile müşterilerimize sürdürülebilir, yüksek performanslı ve etik tabanlı çözümler sunuyoruz. Yenilikçi teknolojiler ve kullanıcı odaklı tasarım ilkelerimizle her projeyi güçlü bir vizyon ile hayata geçiriyoruz.
+            </p>
             <div class="chip-row">
               <span class="chip" data-content="about.hero.chips.0">FOSS Odaklı</span>
               <span class="chip" data-content="about.hero.chips.1"
@@ -116,13 +136,7 @@
             <h2 data-content="about.tiles.focus.title">
                Mühendislik Etiklerine Sadık, Açık Kaynak Felsefesiyle Çalışan Profesyonel Ekip
             </h2>
-            <ul class="tile-list" id="aboutHighlights">
-              <li>FOSS (Free and Open Source Software) felsefesine sadık kalma</li>
-              <li>Yapay Zekâ ve Veri Odaklı Çözümler ile yenilikçi yaklaşımlar</li>
-              <li>Mühendislik Etikleri ve sürdürülebilirlik ilkelerine uygun çözümler</li>
-              <li>Kullanıcı Odaklı Tasarım ve performans odaklı geliştirme</li>
-              <li>Medya ve Oyun Teknolojileri alanında yaratıcı ve profesyonel çözümler</li>
-            </ul>
+            <ul class="tile-list" id="aboutHighlights"></ul>
           </article>
 
           <article class="tile span-2" style="--i: 3">
@@ -135,20 +149,7 @@
               >
             </div>
             <h3 data-content="about.tiles.stats.title">Deneyim ve Başarılarımız</h3>
-            <div class="stats" id="aboutStats">
-              <div>
-                <span class="stat-num">10+</span>
-                <span class="stat-label">Devam Eden ve Biten Proje</span>
-              </div>
-              <div>
-                <span class="stat-num">5+</span>
-                <span class="stat-label">Ürün ve Hizmet Ailesi</span>
-              </div>
-              <div>
-                <span class="stat-num">1</span>
-                <span class="stat-label">Partner</span>
-              </div>
-            </div>
+            <div class="stats" id="aboutStats"></div>
           </article>
         </section>
 
@@ -164,9 +165,5 @@
     <script src="app.js"></script>
   </body>
 </html>
-
-
-
-
 
 

@@ -6,6 +6,8 @@ const projectsList = document.querySelector("[data-projects-list]");
 const projectsStatus = document.querySelector("[data-projects-status]");
 const softwareList = document.querySelector("[data-software-list]");
 const softwareStatus = document.querySelector("[data-software-status]");
+const newsList = document.querySelector("[data-news-list]");
+const newsStatus = document.querySelector("[data-news-status]");
 const messagesList = document.querySelector("[data-messages-list]");
 const messagesStatus = document.querySelector("[data-messages-status]");
 const seoForm = document.querySelector('[data-admin-form][data-resource="seo"]');
@@ -119,7 +121,7 @@ const updateMessage = async (form) => {
   const bodyHash = await sha256(payload);
   if (!bodyHash) {
     hashEl.textContent = "-";
-    messageEl.textContent = "SHA-256 hesaplanamadi. Sunucuyu localhost uzerinden acin.";
+    messageEl.textContent = "SHA-256 hesaplanamadı. Sunucuyu localhost üzerinden açın.";
     return;
   }
   hashEl.textContent = bodyHash;
@@ -133,18 +135,18 @@ const loadPayload = async (form) => {
   if (!payloadField) {
     return;
   }
-  setStatus(form, "Yukleniyor...");
+  setStatus(form, "Yükleniyor...");
   try {
     const response = await fetch(`/api/${resource}`);
     if (!response.ok) {
-      throw new Error("Yukleme basarisiz");
+      throw new Error("Yükleme başarısız");
     }
     const data = await response.json();
     payloadField.value = JSON.stringify(data, null, 2);
     await updateMessage(form);
-    setStatus(form, "Yukleme tamamlandi.");
+    setStatus(form, "Yükleme tamamlandı.");
   } catch (error) {
-    setStatus(form, "Yukleme basarisiz.", true);
+    setStatus(form, "Yükleme başarısız.", true);
   }
 };
 
@@ -155,7 +157,7 @@ const renderProjectsList = (items) => {
   projectsList.innerHTML = `
     <div class="admin-table-row admin-table-head">
       <span>ID</span>
-      <span>Baslik</span>
+      <span>Başlık</span>
       <span>Durum</span>
       <span></span>
     </div>
@@ -169,13 +171,21 @@ const renderProjectsList = (items) => {
     const id = document.createElement("span");
     id.textContent = item.id || "-";
     const title = document.createElement("span");
-    title.textContent = item.title || "-";
+    const titleValue =
+      item.title && typeof item.title === "object"
+        ? item.title.tr || item.title.en
+        : item.title;
+    title.textContent = titleValue || "-";
     const status = document.createElement("span");
-    status.textContent = item.status || "-";
+    const statusValue =
+      item.status && typeof item.status === "object"
+        ? item.status.tr || item.status.en
+        : item.status;
+    status.textContent = statusValue || "-";
     const button = document.createElement("button");
     button.className = "btn ghost small";
     button.type = "button";
-    button.textContent = "Duzenle";
+    button.textContent = "Düzenle";
     row.appendChild(id);
     row.appendChild(title);
     row.appendChild(status);
@@ -225,13 +235,21 @@ const renderSoftwareList = (items) => {
     const id = document.createElement("span");
     id.textContent = item.id || "-";
     const name = document.createElement("span");
-    name.textContent = item.name || "-";
+    const nameValue =
+      item.name && typeof item.name === "object"
+        ? item.name.tr || item.name.en
+        : item.name;
+    name.textContent = nameValue || "-";
     const status = document.createElement("span");
-    status.textContent = item.status || "-";
+    const statusValue =
+      item.status && typeof item.status === "object"
+        ? item.status.tr || item.status.en
+        : item.status;
+    status.textContent = statusValue || "-";
     const button = document.createElement("button");
     button.className = "btn ghost small";
     button.type = "button";
-    button.textContent = "Duzenle";
+    button.textContent = "Düzenle";
     row.appendChild(id);
     row.appendChild(name);
     row.appendChild(status);
@@ -257,6 +275,66 @@ const renderSoftwareList = (items) => {
       });
     }
     softwareList.appendChild(row);
+  });
+};
+
+const renderNewsList = (items) => {
+  if (!newsList) {
+    return;
+  }
+  newsList.innerHTML = `
+    <div class="admin-table-row admin-table-head">
+      <span>ID</span>
+      <span>Başlık</span>
+      <span>Tarih</span>
+      <span></span>
+    </div>
+  `;
+  (items || []).forEach((item) => {
+    if (!item) {
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "admin-table-row";
+    const id = document.createElement("span");
+    id.textContent = item.id || "-";
+    const title = document.createElement("span");
+    const titleValue =
+      item.title && typeof item.title === "object"
+        ? item.title.tr || item.title.en
+        : item.title;
+    title.textContent = titleValue || "-";
+    const date = document.createElement("span");
+    date.textContent = item.date || "-";
+    const button = document.createElement("button");
+    button.className = "btn ghost small";
+    button.type = "button";
+    button.textContent = "Düzenle";
+    row.appendChild(id);
+    row.appendChild(title);
+    row.appendChild(date);
+    row.appendChild(button);
+    if (button) {
+      button.addEventListener("click", () => {
+        const form = document.querySelector(
+          '[data-admin-form][data-resource="news"][data-method="PUT"]'
+        );
+        if (!form) {
+          return;
+        }
+        const idField = form.querySelector("input[name=itemId]");
+        const payloadField = form.querySelector("textarea[name=payload]");
+        if (idField) {
+          idField.value = item.id || "";
+        }
+        if (payloadField) {
+          const { id, createdAt, updatedAt, ...rest } = item;
+          payloadField.value = JSON.stringify(rest, null, 2);
+        }
+        updateMessage(form);
+      });
+    }
+    newsList.appendChild(row);
   });
 };
 
@@ -298,17 +376,17 @@ const renderMessagesList = (items) => {
 };
 
 const loadList = async (resource, onSuccess, statusNode) => {
-  setInlineStatus(statusNode, "Yukleniyor...");
+  setInlineStatus(statusNode, "Yükleniyor...");
   try {
     const response = await fetch(`/api/${resource}`);
     if (!response.ok) {
-      throw new Error("Yukleme basarisiz");
+      throw new Error("Yükleme başarısız");
     }
     const data = await response.json();
     onSuccess(data);
-    setInlineStatus(statusNode, "Yukleme tamamlandi.");
+    setInlineStatus(statusNode, "Yükleme tamamlandı.");
   } catch (error) {
-    setInlineStatus(statusNode, "Yukleme basarisiz.", true);
+    setInlineStatus(statusNode, "Yükleme başarısız.", true);
   }
 };
 
@@ -348,11 +426,11 @@ const buildSeoList = (seoData) => {
   const emptyTitle = document.createElement("input");
   emptyTitle.type = "text";
   emptyTitle.dataset.field = "title";
-  emptyTitle.placeholder = "Baslik";
+  emptyTitle.placeholder = "Başlık";
   const emptyDescription = document.createElement("input");
   emptyDescription.type = "text";
   emptyDescription.dataset.field = "description";
-  emptyDescription.placeholder = "Aciklama";
+  emptyDescription.placeholder = "Açıklama";
   emptyRow.appendChild(emptyKey);
   emptyRow.appendChild(emptyTitle);
   emptyRow.appendChild(emptyDescription);
@@ -360,7 +438,7 @@ const buildSeoList = (seoData) => {
 };
 
 const loadSeoList = async () => {
-  setInlineStatus(seoListStatus, "Yukleniyor...");
+  setInlineStatus(seoListStatus, "Yükleniyor...");
   let seoData = null;
   const payloadField = seoForm?.querySelector("textarea[name=payload]");
   if (payloadField) {
@@ -377,11 +455,11 @@ const loadSeoList = async () => {
     }
   }
   if (!seoData) {
-    setInlineStatus(seoListStatus, "SEO verisi bulunamadi.", true);
+    setInlineStatus(seoListStatus, "SEO verisi bulunamadı.", true);
     return;
   }
   buildSeoList(seoData);
-  setInlineStatus(seoListStatus, "Liste hazir.");
+  setInlineStatus(seoListStatus, "Liste hazır.");
 };
 
 const applySeoList = () => {
@@ -416,7 +494,7 @@ const applySeoList = () => {
   current.pages = pages;
   payloadField.value = JSON.stringify(current, null, 2);
   updateMessage(seoForm);
-  setInlineStatus(seoListStatus, "SEO JSON guncellendi.");
+  setInlineStatus(seoListStatus, "SEO JSON güncellendi.");
 };
 
 const submitPayload = async (form) => {
@@ -452,12 +530,12 @@ const submitPayload = async (form) => {
     try {
       JSON.parse(payload);
     } catch (error) {
-      setStatus(form, "JSON gecersiz.", true);
+      setStatus(form, "JSON geçersiz.", true);
       return;
     }
   }
 
-  setStatus(form, "Gonderiliyor...");
+  setStatus(form, "Gönderiliyor...");
   try {
     const headers = {
       "X-SSH-Key-Id": keyIdField.value.trim(),
@@ -480,9 +558,9 @@ const submitPayload = async (form) => {
       return;
     }
 
-    setStatus(form, "Guncelleme tamamlandi.");
+  setStatus(form, "Güncelleme tamamlandı.");
   } catch (error) {
-    setStatus(form, "Istek gonderilemedi.", true);
+    setStatus(form, "İstek gönderilemedi.", true);
   }
 };
 
@@ -519,6 +597,80 @@ adminForms.forEach((form) => {
     event.preventDefault();
     submitPayload(form);
   });
+});
+
+const adminTiles = Array.from(document.querySelectorAll(".admin-tile"));
+const adminModalOverlay = document.querySelector(".admin-modal-overlay");
+let activeAdminModal = null;
+
+const closeAdminModal = () => {
+  if (activeAdminModal) {
+    activeAdminModal.classList.remove("is-modal");
+    activeAdminModal = null;
+  }
+  document.body.classList.remove("admin-modal-open");
+};
+
+const openAdminModal = (tile) => {
+  if (!tile) {
+    return;
+  }
+  if (activeAdminModal && activeAdminModal !== tile) {
+    activeAdminModal.classList.remove("is-modal");
+  }
+  activeAdminModal = tile;
+  tile.classList.add("is-modal");
+  document.body.classList.add("admin-modal-open");
+};
+
+const ensureAdminModalButtons = () => {
+  adminTiles.forEach((tile) => {
+    const header = tile.querySelector(".tile-header");
+    if (header && !header.querySelector("[data-admin-modal-open]")) {
+      const openButton = document.createElement("button");
+      openButton.type = "button";
+      openButton.className = "admin-modal-trigger";
+      openButton.textContent = "Aç";
+      openButton.setAttribute("data-admin-modal-open", "true");
+      header.appendChild(openButton);
+    }
+    if (!tile.querySelector("[data-admin-modal-close]")) {
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.className = "admin-modal-close";
+      closeButton.innerHTML = "×";
+      closeButton.setAttribute("data-admin-modal-close", "true");
+      tile.appendChild(closeButton);
+    }
+  });
+};
+
+ensureAdminModalButtons();
+
+adminTiles.forEach((tile) => {
+  tile.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!target) {
+      return;
+    }
+    if (target.closest("[data-admin-modal-close]")) {
+      closeAdminModal();
+      return;
+    }
+    if (target.closest("[data-admin-modal-open]")) {
+      openAdminModal(tile);
+    }
+  });
+});
+
+if (adminModalOverlay) {
+  adminModalOverlay.addEventListener("click", () => closeAdminModal());
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && activeAdminModal) {
+    closeAdminModal();
+  }
 });
 
 if (authForm) {
@@ -559,6 +711,11 @@ document
   .querySelector("[data-action=software-load]")
   ?.addEventListener("click", () =>
     loadList("software", renderSoftwareList, softwareStatus)
+  );
+document
+  .querySelector("[data-action=news-load]")
+  ?.addEventListener("click", () =>
+    loadList("news", renderNewsList, newsStatus)
   );
 document
   .querySelector("[data-action=messages-load]")

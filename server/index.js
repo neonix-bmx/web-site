@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("http");
+const https = require("https");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
@@ -41,6 +42,9 @@ const SEO_FIELDS = [
   "twitterPlayer",
   "ogType",
 ];
+const TRANSLATE_URL =
+  process.env.BERRYMX_TRANSLATE_URL || "https://libretranslate.com/translate";
+const TRANSLATE_KEY = process.env.BERRYMX_TRANSLATE_KEY || "";
 
 const ensureDir = (dirPath) => {
   try {
@@ -71,6 +75,7 @@ const KEYS_DIR = keysDir;
 const ALLOWED_SIGNERS =
   process.env.BERRYMX_ALLOWED_SIGNERS ||
   path.join(KEYS_DIR, "allowed_signers");
+const REPO_DATA_DIR = path.join(SITE_ROOT, "data");
 
 const apiResources = {
   projects: { file: "projects.json", mode: "collection" },
@@ -81,6 +86,33 @@ const apiResources = {
   seo: { file: "seo.json", mode: "singleton" },
   pages: { file: "pages.json", mode: "singleton" },
 };
+
+const syncRepoData = () => {
+  if (!fs.existsSync(REPO_DATA_DIR)) {
+    return;
+  }
+  Object.values(apiResources).forEach(({ file }) => {
+    if (!file) {
+      return;
+    }
+    const source = path.join(REPO_DATA_DIR, file);
+    if (!fs.existsSync(source)) {
+      return;
+    }
+    const target = path.join(DATA_DIR, file);
+    try {
+      const sourceStat = fs.statSync(source);
+      const targetStat = fs.existsSync(target) ? fs.statSync(target) : null;
+      if (!targetStat || sourceStat.mtimeMs > targetStat.mtimeMs) {
+        fs.copyFileSync(source, target);
+      }
+    } catch (error) {
+      console.warn(`Could not sync ${file}: ${error.message}`);
+    }
+  });
+};
+
+syncRepoData();
 
 const contentTypes = {
   ".html": "text/html; charset=utf-8",
@@ -189,7 +221,7 @@ const sanitizePagesObject = (payload, depth = 0) => {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     return null;
   }
-  if (depth > 4) {
+  if (depth > 6) {
     return null;
   }
   const cleaned = {};
@@ -236,6 +268,92 @@ const sanitizePagesObject = (payload, depth = 0) => {
   return Object.keys(cleaned).length ? cleaned : null;
 };
 
+const normalizeI18nField = (value) => {
+  if (value === undefined || value === null) {
+    return null;
+  }
+  if (typeof value === "string" || typeof value === "number") {
+    const trimmed = String(value).trim();
+    return trimmed ? trimmed : null;
+  }
+  if (typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  const cleaned = {};
+  ["tr", "en"].forEach((key) => {
+    const entry = value[key];
+    if (typeof entry === "string" || typeof entry === "number") {
+      const trimmed = String(entry).trim();
+      if (trimmed) {
+        cleaned[key] = trimmed;
+      }
+    }
+  });
+  return Object.keys(cleaned).length ? cleaned : null;
+};
+
+const normalizeI18nList = (value) => {
+  if (value === undefined || value === null) {
+    return null;
+  }
+  if (Array.isArray(value)) {
+    const list = value.map((entry) => String(entry).trim()).filter(Boolean);
+    return list.length ? list : null;
+  }
+  if (typeof value === "string") {
+    const list = value
+      .split(/\r?\n|,/)
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+    return list.length ? list : null;
+  }
+  if (typeof value !== "object") {
+    return null;
+  }
+  const cleaned = {};
+  ["tr", "en"].forEach((key) => {
+    const entry = value[key];
+    if (Array.isArray(entry)) {
+      const list = entry.map((item) => String(item).trim()).filter(Boolean);
+      if (list.length) {
+        cleaned[key] = list;
+      }
+    } else if (typeof entry === "string") {
+      const list = entry
+        .split(/\r?\n|,/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+      if (list.length) {
+        cleaned[key] = list;
+      }
+    }
+  });
+  return Object.keys(cleaned).length ? cleaned : null;
+};
+
+const normalizeStats = (value) => {
+  if (!Array.isArray(value)) {
+    return null;
+  }
+  const items = value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") {
+        return null;
+      }
+      const label = normalizeI18nField(entry.label);
+      const statValue = normalizeI18nField(entry.value);
+      if (!label && !statValue) {
+        return null;
+      }
+      return {
+        label: label || "",
+        value: statValue || "",
+      };
+    })
+    .filter(Boolean);
+  return items.length ? items : null;
+};
+
 const sanitizePayload = (resource, payload, options = {}) => {
   if (resource === "pages") {
     const cleaned = sanitizePagesObject(payload);
@@ -246,12 +364,13 @@ const sanitizePayload = (resource, payload, options = {}) => {
   }
   const fields = {
     projects: ["title", "summary", "stack", "status", "year"],
-    software: ["name", "type", "status", "downloadUrl"],
+    software: ["name", "type", "status", "description", "downloadUrl"],
     news: [
       "title",
       "date",
       "slug",
       "summary",
+      "content",
       "metaTitle",
       "metaDescription",
       "ogImage",
@@ -293,53 +412,48 @@ const sanitizePayload = (resource, payload, options = {}) => {
   const requiredFields = required[resource] || [];
   const allowPartial = Boolean(options.allowPartial);
   const cleaned = {};
+  const i18nFields = new Set([
+    "title",
+    "summary",
+    "status",
+    "name",
+    "type",
+    "description",
+    "content",
+    "metaTitle",
+    "metaDescription",
+  ]);
 
   allowed.forEach((key) => {
     const value = payload[key];
     if (value === undefined || value === null) {
       return;
     }
+    if (i18nFields.has(key)) {
+      const normalized = normalizeI18nField(value);
+      if (normalized) {
+        cleaned[key] = normalized;
+      }
+      return;
+    }
     if (key === "stack") {
-      if (Array.isArray(value)) {
-        cleaned.stack = value
-          .map((entry) => String(entry).trim())
-          .filter(Boolean);
-      } else if (typeof value === "string") {
-        cleaned.stack = value
-          .split(",")
-          .map((entry) => entry.trim())
-          .filter(Boolean);
+      const list = normalizeI18nList(value);
+      if (list) {
+        cleaned.stack = list;
       }
       return;
     }
     if (key === "highlights") {
-      if (Array.isArray(value)) {
-        cleaned.highlights = value
-          .map((entry) => String(entry).trim())
-          .filter(Boolean);
-      } else if (typeof value === "string") {
-        cleaned.highlights = value
-          .split(/\r?\n|,/)
-          .map((entry) => entry.trim())
-          .filter(Boolean);
+      const list = normalizeI18nList(value);
+      if (list) {
+        cleaned.highlights = list;
       }
       return;
     }
     if (key === "stats") {
-      if (Array.isArray(value)) {
-        cleaned.stats = value
-          .map((entry) => {
-            if (!entry || typeof entry !== "object") {
-              return null;
-            }
-            const label = entry.label ? String(entry.label).trim() : "";
-            const statValue = entry.value ? String(entry.value).trim() : "";
-            if (!label && !statValue) {
-              return null;
-            }
-            return { label, value: statValue };
-          })
-          .filter(Boolean);
+      const stats = normalizeStats(value);
+      if (stats) {
+        cleaned.stats = stats;
       }
       return;
     }
@@ -376,8 +490,11 @@ const sanitizePayload = (resource, payload, options = {}) => {
           .map((entry) => String(entry).trim())
           .filter(Boolean)
           .join(", ");
-      } else if (typeof value === "string") {
-        cleaned.keywords = value.trim();
+        return;
+      }
+      const normalized = normalizeI18nField(value);
+      if (normalized) {
+        cleaned.keywords = normalized;
       }
       return;
     }
@@ -477,6 +594,77 @@ const verifyAdmin = (req, pathname, body) => {
   }
 };
 
+const requestJson = (url, payload) =>
+  new Promise((resolve, reject) => {
+    let parsed;
+    try {
+      parsed = new URL(url);
+    } catch (error) {
+      reject(new Error("Invalid translate URL"));
+      return;
+    }
+    const body = JSON.stringify(payload);
+    const transport = parsed.protocol === "https:" ? https : http;
+    const req = transport.request(
+      {
+        method: "POST",
+        hostname: parsed.hostname,
+        port: parsed.port || (parsed.protocol === "https:" ? 443 : 80),
+        path: `${parsed.pathname}${parsed.search || ""}`,
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body),
+        },
+      },
+      (res) => {
+        let data = "";
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
+        res.on("end", () => {
+          if (res.statusCode < 200 || res.statusCode >= 300) {
+            reject(new Error(`Translate failed (${res.statusCode})`));
+            return;
+          }
+          try {
+            resolve(JSON.parse(data));
+          } catch (error) {
+            reject(new Error("Translate response invalid"));
+          }
+        });
+      }
+    );
+    req.on("error", (error) => reject(error));
+    req.write(body);
+    req.end();
+  });
+
+const translateText = async ({ text, source = "tr", target = "en" }) => {
+  if (!TRANSLATE_URL) {
+    throw new Error("Translate URL not configured");
+  }
+  const payload = {
+    q: text,
+    source,
+    target,
+    format: "text",
+  };
+  if (TRANSLATE_KEY) {
+    payload.api_key = TRANSLATE_KEY;
+  }
+  const response = await requestJson(TRANSLATE_URL, payload);
+  if (response && typeof response.translatedText === "string") {
+    return response.translatedText;
+  }
+  if (response && Array.isArray(response.translations)) {
+    const entry = response.translations[0];
+    if (entry && typeof entry.translatedText === "string") {
+      return entry.translatedText;
+    }
+  }
+  throw new Error("Translate response missing text");
+};
+
 const serveStatic = async (req, res, pathname) => {
   const safePath = pathname === "/" ? "/index.html" : pathname;
   const resolved = path.resolve(SITE_ROOT, `.${safePath}`);
@@ -509,6 +697,45 @@ const handleApi = async (req, res, pathname) => {
   const parts = pathname.split("/").filter(Boolean);
   const resource = parts[1];
   const itemId = parts[2];
+  if (resource === "translate") {
+    if (req.method !== "POST") {
+      sendJson(res, 405, { error: "Method not allowed" });
+      return;
+    }
+    let body = "";
+    try {
+      body = await readBody(req);
+    } catch (error) {
+      sendJson(res, 413, { error: "Body too large" });
+      return;
+    }
+    const auth = verifyAdmin(req, pathname, body);
+    if (!auth.ok) {
+      sendJson(res, 401, { error: auth.error });
+      return;
+    }
+    let payload = {};
+    try {
+      payload = body ? JSON.parse(body) : {};
+    } catch (error) {
+      sendJson(res, 400, { error: "Invalid JSON body" });
+      return;
+    }
+    const text = payload.text ? String(payload.text).trim() : "";
+    const source = payload.source ? String(payload.source).trim() : "tr";
+    const target = payload.target ? String(payload.target).trim() : "en";
+    if (!text) {
+      sendJson(res, 400, { error: "Missing text" });
+      return;
+    }
+    try {
+      const translated = await translateText({ text, source, target });
+      sendJson(res, 200, { text: translated });
+    } catch (error) {
+      sendJson(res, 502, { error: error.message || "Translate failed" });
+    }
+    return;
+  }
   const config = getResourceConfig(resource);
   if (!config) {
     sendJson(res, 404, { error: "Unknown resource" });

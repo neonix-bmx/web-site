@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="BerryMX iletisim. Neon Metro UI projeleri icin iletisim formu." />
-    <title>BerryMX | Iletisim</title>
+      content="BerryMX iletişim. Neon Metro UI projeleri için iletişim formu." />
+    <title>BerryMX | İletişim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,8 +20,8 @@
         <div class="brand">
           <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
           <div class="brand-text">
-            <span class="brand-name">BerryMX</span>
-            <span class="brand-tag">Neon Metro Studio</span>
+            <span class="brand-name">Berry Compute & Media Solutions</span>
+            <span class="brand-tag">It's FOSS</span>
           </div>
         </div>
         <nav class="nav-tiles">
@@ -32,7 +32,7 @@
                   d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
               </svg>
             </span>
-            <span class="label">Home</span>
+            <span class="label" data-content="nav.home">Ana Sayfa</span>
           </a>
           <a class="nav-tile" href="projects.html" data-page="projects">
             <span class="icon">
@@ -41,7 +41,7 @@
                   d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z" />
               </svg>
             </span>
-            <span class="label">Projeler</span>
+            <span class="label" data-content="nav.projects">Projeler</span>
           </a>
           <a class="nav-tile" href="software.html" data-page="software">
             <span class="icon">
@@ -50,7 +50,7 @@
                   d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z" />
               </svg>
             </span>
-            <span class="label">Yazilimlar</span>
+            <span class="label" data-content="nav.software">Yazılımlar</span>
           </a>
           <a class="nav-tile" href="news.html" data-page="news">
             <span class="icon">
@@ -59,7 +59,7 @@
                   d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z" />
               </svg>
             </span>
-            <span class="label">Haberler</span>
+            <span class="label" data-content="nav.news">Haberler</span>
           </a>
           <a class="nav-tile" href="about.html" data-page="about">
             <span class="icon">
@@ -68,7 +68,7 @@
                   d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z" />
               </svg>
             </span>
-            <span class="label">Hakkimizda</span>
+            <span class="label" data-content="nav.about">Hakkımızda</span>
           </a>
           <a class="nav-tile is-active" href="contact.html" data-page="contact" aria-current="page">
             <span class="icon">
@@ -77,20 +77,39 @@
                   d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5" />
               </svg>
             </span>
-            <span class="label">Iletisim</span>
+            <span class="label" data-content="nav.contact">İletişim</span>
+          </a>
+          <a
+            class="nav-tile"
+            href="https://community.berrymx.com"
+            data-href="links.forum"
+            target="_blank"
+            rel="noopener"
+            data-page="forum">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 5v-5H6a2 2 0 0 1-2-2V6Z" />
+              </svg>
+            </span>
+            <span class="label" data-content="nav.forum">Topluluk</span>
           </a>
         </nav>
+        <div class="lang-switch" aria-label="Dil Seçimi">
+          <button class="lang-btn" type="button" data-lang-toggle="tr">TR</button>
+          <button class="lang-btn" type="button" data-lang-toggle="en">EN</button>
+        </div>
       </aside>
 
       <main class="main">
         <section class="hero single">
           <div class="hero-copy">
-            <p class="eyebrow" data-content="contact.hero.eyebrow">Iletisim</p>
+            <p class="eyebrow" data-content="contact.hero.eyebrow">İletişim</p>
             <h1 data-content="contact.hero.title">
               Yeni projeyi birlikte planlayalim.
             </h1>
             <p class="lead" data-content="contact.hero.lead">
-              Mesajini birak, ekip kisa surede geri donsun. Form uzerinden gelen
+              Mesajını bırak, ekip kısa sürede geri dönsün. Form üzerinden gelen
               notlar onboarding surecine aktarilir.
             </p>
             <div class="chip-row">
@@ -99,7 +118,7 @@
                 >Neon Destek</span
               >
               <span class="chip" data-content="contact.hero.chips.2"
-                >Hizli Geri Donus</span
+                >Hızlı Geri Dönüş</span
               >
             </div>
           </div>
@@ -109,20 +128,21 @@
           <article class="tile span-full" style="--i: 2">
             <div class="tile-header">
               <span class="tile-kicker" data-content="contact.tiles.form.kicker"
-                >Iletisim Formu</span
+                >İletişim Formu</span
               >
               <span class="tile-badge" data-content="contact.tiles.form.badge"
                 >Aktif</span
               >
             </div>
             <h2 data-content="contact.tiles.form.title">
-              Proje ihtiyacini paylas
+              Proje ihtiyacını paylaş
             </h2>
             <form class="contact-form">
               <input
                 type="text"
                 name="name"
                 placeholder="Ad Soyad"
+                data-placeholder="contact.form.name"
                 aria-label="Ad Soyad"
                 autocomplete="name"
                 required />
@@ -130,6 +150,7 @@
                 type="email"
                 name="email"
                 placeholder="E-posta"
+                data-placeholder="contact.form.email"
                 aria-label="E-posta"
                 autocomplete="email"
                 required />
@@ -137,9 +158,12 @@
                 name="message"
                 rows="3"
                 placeholder="Proje notu"
+                data-placeholder="contact.form.message"
                 aria-label="Proje notu"
                 required></textarea>
-              <button class="btn" type="submit">Mesaj Gonder</button>
+              <button class="btn" type="submit" data-content="contact.form.submit">
+                Mesaj Gönder
+              </button>
             </form>
             <div class="contact-info">
               <span data-content="contact.tiles.info.email">hello@berrymx.com</span>
@@ -157,10 +181,10 @@
               >
             </div>
             <h3 data-content="contact.tiles.office.title">
-              Yerinde gorusme icin randevu al.
+              Yerinde görüşme için randevu al.
             </h3>
             <p data-content="contact.tiles.office.body">
-              Bodrum merkezli ekip, yerel ve global projelerde yaninda.
+              Bodrum merkezli ekip, yerel ve global projelerde yanında.
             </p>
           </article>
 
@@ -173,7 +197,7 @@
                 >SLA</span
               >
             </div>
-            <h3 data-content="contact.tiles.support.title">Hizli geri donus</h3>
+            <h3 data-content="contact.tiles.support.title">Hızlı geri dönüş</h3>
             <p data-content="contact.tiles.support.body">
               Kritik istekler icin SLA destek akisi saglanir.
             </p>

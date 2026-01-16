@@ -1,7 +1,7 @@
 {
   "siteName": "BerryMX",
   "title": "BerryMX | Neon Metro UI",
-  "description": "BerryMX neon metro UI inspired studio. Projeler, portfoy, duyurular ve iletisim grid yapida.",
+  "description": "BerryMX neon metro UI inspired studio. Projeler, portföy, duyurular ve iletişim grid yapıda.",
   "keywords": "berrymx, neon, metro ui, projects, software, news",
   "ogImage": "/images/berrymx.png",
   "canonicalBase": "https://berrymx.com",
@@ -14,22 +14,22 @@
     },
     "projects": {
       "title": "BerryMX | Projeler",
-      "description": "Projeler vitrini ve case study akisi."
+      "description": "Projeler vitrini ve case study akışı."
     },
     "software": {
-      "title": "BerryMX | Yazilimlar",
-      "description": "Portfoy, durum ve surum notlari."
+      "title": "BerryMX | Yazılımlar",
+      "description": "Portföy, durum ve sürüm notları."
     },
     "news": {
       "title": "BerryMX | Haberler",
-      "description": "Duyurular ve haberler grid akisi."
+      "description": "Duyurular ve haberler grid akışı."
     },
     "about": {
-      "title": "BerryMX | Hakkimizda",
+      "title": "BerryMX | Hakkımızda",
       "description": "Vision, highlights, and stats from BerryMX."
     },
     "contact": {
-      "title": "BerryMX | Iletisim",
+      "title": "BerryMX | İletişim",
       "description": "Contact BerryMX for new projects and support."
     },
     "admin": {

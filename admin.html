@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="BerryMX admin erisim. SSH dogrulamali API uzerinden yonetim." />
+      content="BerryMX admin erişim. SSH doğrulamalı API üzerinden yönetim." />
     <title>BerryMX | Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,8 +20,8 @@
         <div class="brand">
           <img src="images/berrymx.png" alt="BerryMX" class="brand-logo" />
           <div class="brand-text">
-            <span class="brand-name">BerryMX</span>
-            <span class="brand-tag">Neon Metro Studio</span>
+            <span class="brand-name">Berry Compute & Media Solutions</span>
+            <span class="brand-tag">It's FOSS</span>
           </div>
         </div>
         <nav class="nav-tiles">
@@ -32,7 +32,7 @@
                   d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
               </svg>
             </span>
-            <span class="label">Home</span>
+            <span class="label" data-content="nav.home">Ana Sayfa</span>
           </a>
           <a class="nav-tile" href="projects.html" data-page="projects">
             <span class="icon">
@@ -41,7 +41,7 @@
                   d="M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 13h6v6H4v-6Zm10 0h6v6h-6v-6Z" />
               </svg>
             </span>
-            <span class="label">Projeler</span>
+            <span class="label" data-content="nav.projects">Projeler</span>
           </a>
           <a class="nav-tile" href="software.html" data-page="software">
             <span class="icon">
@@ -50,7 +50,7 @@
                   d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm4 14h6l1 2H8l1-2Z" />
               </svg>
             </span>
-            <span class="label">Yazilimlar</span>
+            <span class="label" data-content="nav.software">Yazılımlar</span>
           </a>
           <a class="nav-tile" href="news.html" data-page="news">
             <span class="icon">
@@ -59,7 +59,7 @@
                   d="M5 4h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1Zm2 4h8v2H7V8Zm0 4h10v2H7v-2Z" />
               </svg>
             </span>
-            <span class="label">Haberler</span>
+            <span class="label" data-content="nav.news">Haberler</span>
           </a>
           <a class="nav-tile" href="about.html" data-page="about">
             <span class="icon">
@@ -68,7 +68,7 @@
                   d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7 16a7 7 0 0 1 14 0H5Z" />
               </svg>
             </span>
-            <span class="label">Hakkimizda</span>
+            <span class="label" data-content="nav.about">Hakkımızda</span>
           </a>
           <a class="nav-tile" href="contact.html" data-page="contact">
             <span class="icon">
@@ -77,9 +77,28 @@
                   d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 5 6-5" />
               </svg>
             </span>
-            <span class="label">Iletisim</span>
+            <span class="label" data-content="nav.contact">İletişim</span>
+          </a>
+          <a
+            class="nav-tile"
+            href="https://community.berrymx.com"
+            data-href="links.forum"
+            target="_blank"
+            rel="noopener"
+            data-page="forum">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 5v-5H6a2 2 0 0 1-2-2V6Z" />
+              </svg>
+            </span>
+            <span class="label" data-content="nav.forum">Topluluk</span>
           </a>
         </nav>
+        <div class="lang-switch" aria-label="Dil Seçimi">
+          <button class="lang-btn" type="button" data-lang-toggle="tr">TR</button>
+          <button class="lang-btn" type="button" data-lang-toggle="en">EN</button>
+        </div>
       </aside>
 
       <main class="main">
@@ -87,7 +106,7 @@
           <div class="hero-copy">
             <p class="eyebrow" data-content="admin.hero.eyebrow">Admin</p>
             <h1 data-content="admin.hero.title">
-              SSH dogrulamali API uzerinden yonetim.
+              SSH doğrulamalı API üzerinden yönetim.
             </h1>
             <p class="lead" data-content="admin.hero.lead">
               Admin paneli sadece SSH signature ile calisir. Web uzerinden giris
@@ -185,19 +204,19 @@
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="load">
-                  Yukle
+                  Yükle
                 </button>
                 <button class="btn ghost small" type="button" data-action="timestamp">
                   Timestamp
                 </button>
-                <button class="btn small" type="submit">Guncelle</button>
+                <button class="btn small" type="submit">Güncelle</button>
               </div>
               <div class="admin-meta">
                 <span class="admin-label">Body SHA256</span>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -211,18 +230,18 @@ Imza mesaji burada gorunecek.</pre>
                 >Liste</span
               >
             </div>
-            <h2 data-content="admin.tiles.seoList.title">SEO Sayfalari</h2>
+            <h2 data-content="admin.tiles.seoList.title">SEO Sayfaları</h2>
             <div class="admin-list">
               <div class="admin-list-header">
                 <span>Sayfa</span>
-                <span>Baslik</span>
-                <span>Aciklama</span>
+                <span>Başlık</span>
+                <span>Açıklama</span>
               </div>
               <div class="admin-list-body" data-seo-list></div>
             </div>
             <div class="admin-actions">
               <button class="btn ghost small" type="button" data-action="seo-list-load">
-                Yukle
+                Yükle
               </button>
               <button class="btn small" type="button" data-action="seo-list-apply">
                 JSONa Uygula
@@ -237,10 +256,10 @@ Imza mesaji burada gorunecek.</pre>
                 >Sayfalar</span
               >
               <span class="tile-badge" data-content="admin.tiles.pages.badge"
-                >Duzenleme</span
+                >Düzenleme</span
               >
             </div>
-            <h2 data-content="admin.tiles.pages.title">Sayfa Icerikleri</h2>
+            <h2 data-content="admin.tiles.pages.title">Sayfa İçerikleri</h2>
             <form class="admin-form" data-admin-form data-resource="pages">
               <div class="admin-row">
                 <div class="admin-field">
@@ -278,19 +297,19 @@ Imza mesaji burada gorunecek.</pre>
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="load">
-                  Yukle
+                  Yükle
                 </button>
                 <button class="btn ghost small" type="button" data-action="timestamp">
                   Timestamp
                 </button>
-                <button class="btn small" type="submit">Guncelle</button>
+                <button class="btn small" type="submit">Güncelle</button>
               </div>
               <div class="admin-meta">
                 <span class="admin-label">Body SHA256</span>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -334,14 +353,12 @@ Imza mesaji burada gorunecek.</pre>
               </div>
               <div class="admin-field">
                 <label for="projectsAddPayload">Payload (JSON)</label>
-                <textarea id="projectsAddPayload" name="payload" rows="8" required>
-{
-  "title": "Neon Vitrin",
-  "summary": "Neon grid vitrin deneyimi icin flagship proje.",
-  "year": "2025",
-  "status": "Live",
-  "stack": ["Node", "React", "Postgres"]
-}</textarea>
+                <textarea
+                  id="projectsAddPayload"
+                  name="payload"
+                  rows="8"
+                  placeholder='{"title":{"tr":"...","en":"..."},"summary":{"tr":"...","en":"..."},"year":"2025","status":{"tr":"Canlı","en":"Live"},"stack":["Node","React"]}'
+                  required></textarea>
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="timestamp">
@@ -354,7 +371,7 @@ Imza mesaji burada gorunecek.</pre>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -365,10 +382,10 @@ Imza mesaji burada gorunecek.</pre>
                 >Projeler</span
               >
               <span class="tile-badge" data-content="admin.tiles.projectsEdit.badge"
-                >Duzenle</span
+                >Düzenle</span
               >
             </div>
-            <h2 data-content="admin.tiles.projectsEdit.title">Proje Duzenle</h2>
+            <h2 data-content="admin.tiles.projectsEdit.title">Proje Düzenle</h2>
             <form class="admin-form" data-admin-form data-resource="projects" data-method="PUT">
               <div class="admin-row">
                 <div class="admin-field">
@@ -402,28 +419,28 @@ Imza mesaji burada gorunecek.</pre>
               </div>
               <div class="admin-field">
                 <label for="projectsEditPayload">Payload (JSON)</label>
-                <textarea id="projectsEditPayload" name="payload" rows="8" required>
-{
-  "summary": "Guncel grid vitrin akisi.",
-  "status": "Live",
-  "stack": ["Node", "React"]
-}</textarea>
+                <textarea
+                  id="projectsEditPayload"
+                  name="payload"
+                  rows="8"
+                  placeholder='{"summary":{"tr":"...","en":"..."},"status":{"tr":"Canlı","en":"Live"},"stack":["Node","React"]}'
+                  required></textarea>
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="load">
-                  Listeyi Yukle
+                  Listeyi Yükle
                 </button>
                 <button class="btn ghost small" type="button" data-action="timestamp">
                   Timestamp
                 </button>
-                <button class="btn small" type="submit">Guncelle</button>
+                <button class="btn small" type="submit">Güncelle</button>
               </div>
               <div class="admin-meta">
                 <span class="admin-label">Body SHA256</span>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -441,14 +458,14 @@ Imza mesaji burada gorunecek.</pre>
             <div class="admin-table" data-projects-list>
               <div class="admin-table-row admin-table-head">
                 <span>ID</span>
-                <span>Baslik</span>
+                <span>Başlık</span>
                 <span>Durum</span>
                 <span></span>
               </div>
             </div>
             <div class="admin-actions">
               <button class="btn ghost small" type="button" data-action="projects-load">
-                Listeyi Yukle
+                Listeyi Yükle
               </button>
             </div>
             <div class="admin-status" data-projects-status></div>
@@ -457,13 +474,13 @@ Imza mesaji burada gorunecek.</pre>
           <article class="tile span-2 admin-tile" style="--i: 8">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.softwareAdd.kicker"
-                >Yazilimlar</span
+                >Yazılımlar</span
               >
               <span class="tile-badge" data-content="admin.tiles.softwareAdd.badge"
                 >Ekle</span
               >
             </div>
-            <h2 data-content="admin.tiles.softwareAdd.title">Yeni Yazilim Ekle</h2>
+            <h2 data-content="admin.tiles.softwareAdd.title">Yeni Yazılım Ekle</h2>
             <form class="admin-form" data-admin-form data-resource="software" data-method="POST">
               <div class="admin-row">
                 <div class="admin-field">
@@ -493,13 +510,12 @@ Imza mesaji burada gorunecek.</pre>
               </div>
               <div class="admin-field">
                 <label for="softwareAddPayload">Payload (JSON)</label>
-                <textarea id="softwareAddPayload" name="payload" rows="8" required>
-{
-  "name": "Pulse API",
-  "type": "Platform",
-  "status": "Stable",
-  "downloadUrl": "/downloads/pulse-api.zip"
-}</textarea>
+                <textarea
+                  id="softwareAddPayload"
+                  name="payload"
+                  rows="8"
+                  placeholder='{"name":{"tr":"...","en":"..."},"type":{"tr":"Platform","en":"Platform"},"status":{"tr":"Kararlı","en":"Stable"},"description":{"tr":"...","en":"..."},"downloadUrl":"/downloads/ornek.zip"}'
+                  required></textarea>
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="timestamp">
@@ -512,7 +528,7 @@ Imza mesaji burada gorunecek.</pre>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -520,17 +536,17 @@ Imza mesaji burada gorunecek.</pre>
           <article class="tile span-2 admin-tile" style="--i: 7">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.softwareEdit.kicker"
-                >Yazilimlar</span
+                >Yazılımlar</span
               >
               <span class="tile-badge" data-content="admin.tiles.softwareEdit.badge"
-                >Duzenle</span
+                >Düzenle</span
               >
             </div>
-            <h2 data-content="admin.tiles.softwareEdit.title">Yazilim Duzenle</h2>
+            <h2 data-content="admin.tiles.softwareEdit.title">Yazılım Düzenle</h2>
             <form class="admin-form" data-admin-form data-resource="software" data-method="PUT">
               <div class="admin-row">
                 <div class="admin-field">
-                  <label for="softwareEditId">Yazilim ID</label>
+                  <label for="softwareEditId">Yazılım ID</label>
                   <input id="softwareEditId" name="itemId" placeholder="id" required />
                 </div>
                 <div class="admin-field">
@@ -560,27 +576,28 @@ Imza mesaji burada gorunecek.</pre>
               </div>
               <div class="admin-field">
                 <label for="softwareEditPayload">Payload (JSON)</label>
-                <textarea id="softwareEditPayload" name="payload" rows="8" required>
-{
-  "status": "Active",
-  "downloadUrl": "/downloads/metro-ops.zip"
-}</textarea>
+                <textarea
+                  id="softwareEditPayload"
+                  name="payload"
+                  rows="8"
+                  placeholder='{"status":{"tr":"Aktif","en":"Active"},"downloadUrl":"/downloads/ornek.zip"}'
+                  required></textarea>
               </div>
               <div class="admin-actions">
                 <button class="btn ghost small" type="button" data-action="load">
-                  Listeyi Yukle
+                  Listeyi Yükle
                 </button>
                 <button class="btn ghost small" type="button" data-action="timestamp">
                   Timestamp
                 </button>
-                <button class="btn small" type="submit">Guncelle</button>
+                <button class="btn small" type="submit">Güncelle</button>
               </div>
               <div class="admin-meta">
                 <span class="admin-label">Body SHA256</span>
                 <span class="admin-value" data-hash>-</span>
               </div>
               <pre class="admin-message" data-message>
-Imza mesaji burada gorunecek.</pre>
+İmza mesajı burada görünecek.</pre>
               <div class="admin-status" data-status></div>
             </form>
           </article>
@@ -588,13 +605,13 @@ Imza mesaji burada gorunecek.</pre>
           <article class="tile span-2 admin-tile" style="--i: 9">
             <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.softwareList.kicker"
-                >Yazilimlar</span
+                >Yazılımlar</span
               >
               <span class="tile-badge" data-content="admin.tiles.softwareList.badge"
                 >Liste</span
               >
             </div>
-            <h2 data-content="admin.tiles.softwareList.title">Yazilim Listesi</h2>
+            <h2 data-content="admin.tiles.softwareList.title">Yazılım Listesi</h2>
             <div class="admin-table" data-software-list>
               <div class="admin-table-row admin-table-head">
                 <span>ID</span>
@@ -605,16 +622,173 @@ Imza mesaji burada gorunecek.</pre>
             </div>
             <div class="admin-actions">
               <button class="btn ghost small" type="button" data-action="software-load">
-                Listeyi Yukle
+                Listeyi Yükle
               </button>
             </div>
             <div class="admin-status" data-software-status></div>
           </article>
 
+          <article class="tile span-2 admin-tile" style="--i: 9">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.newsAdd.kicker"
+                >Haberler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.newsAdd.badge"
+                >Ekle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.newsAdd.title">Yeni Haber Ekle</h2>
+            <form class="admin-form" data-admin-form data-resource="news" data-method="POST">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="newsAddKeyId">Key ID</label>
+                  <input
+                    id="newsAddKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="newsAddTimestamp">Timestamp</label>
+                  <input
+                    id="newsAddTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="newsAddSignature">Signature (base64)</label>
+                  <input
+                    id="newsAddSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="newsAddPayload">Payload (JSON, Markdown destekler)</label>
+                <textarea
+                  id="newsAddPayload"
+                  name="payload"
+                  rows="10"
+                  placeholder='{"title":{"tr":"...","en":"..."},"summary":{"tr":"...","en":"..."},"content":{"tr":"...","en":"..."},"date":"2025-01-01"}'
+                  required></textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Ekle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+İmza mesajı burada görünecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
+
           <article class="tile span-2 admin-tile" style="--i: 10">
             <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.newsEdit.kicker"
+                >Haberler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.newsEdit.badge"
+                >Düzenle</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.newsEdit.title">Haber Düzenle</h2>
+            <form class="admin-form" data-admin-form data-resource="news" data-method="PUT">
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="newsEditId">Haber ID</label>
+                  <input id="newsEditId" name="itemId" placeholder="id" required />
+                </div>
+                <div class="admin-field">
+                  <label for="newsEditKeyId">Key ID</label>
+                  <input
+                    id="newsEditKeyId"
+                    name="keyId"
+                    placeholder="berrymx-admin"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="newsEditTimestamp">Timestamp</label>
+                  <input
+                    id="newsEditTimestamp"
+                    name="timestamp"
+                    placeholder="1700000000"
+                    required />
+                </div>
+                <div class="admin-field">
+                  <label for="newsEditSignature">Signature (base64)</label>
+                  <input
+                    id="newsEditSignature"
+                    name="signature"
+                    placeholder="Base64 signature"
+                    required />
+                </div>
+              </div>
+              <div class="admin-field">
+                <label for="newsEditPayload">Payload (JSON, Markdown destekler)</label>
+                <textarea
+                  id="newsEditPayload"
+                  name="payload"
+                  rows="10"
+                  placeholder='{"summary":{"tr":"...","en":"..."},"content":{"tr":"...","en":"..."}}'
+                  required></textarea>
+              </div>
+              <div class="admin-actions">
+                <button class="btn ghost small" type="button" data-action="load">
+                  Listeyi Yükle
+                </button>
+                <button class="btn ghost small" type="button" data-action="timestamp">
+                  Timestamp
+                </button>
+                <button class="btn small" type="submit">Güncelle</button>
+              </div>
+              <div class="admin-meta">
+                <span class="admin-label">Body SHA256</span>
+                <span class="admin-value" data-hash>-</span>
+              </div>
+              <pre class="admin-message" data-message>
+İmza mesajı burada görünecek.</pre>
+              <div class="admin-status" data-status></div>
+            </form>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 11">
+            <div class="tile-header">
+              <span class="tile-kicker" data-content="admin.tiles.newsList.kicker"
+                >Haberler</span
+              >
+              <span class="tile-badge" data-content="admin.tiles.newsList.badge"
+                >Liste</span
+              >
+            </div>
+            <h2 data-content="admin.tiles.newsList.title">Haber Listesi</h2>
+            <div class="admin-table" data-news-list>
+              <div class="admin-table-row admin-table-head">
+                <span>ID</span>
+                <span>Başlık</span>
+                <span>Tarih</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn ghost small" type="button" data-action="news-load">
+                Listeyi Yükle
+              </button>
+            </div>
+            <div class="admin-status" data-news-status></div>
+          </article>
+
+          <article class="tile span-2 admin-tile" style="--i: 12">
+            <div class="tile-header">
               <span class="tile-kicker" data-content="admin.tiles.messages.kicker"
-                >Iletisim</span
+                >İletişim</span
               >
               <span class="tile-badge" data-content="admin.tiles.messages.badge"
                 >Mesajlar</span
@@ -631,7 +805,7 @@ Imza mesaji burada gorunecek.</pre>
             </div>
             <div class="admin-actions">
               <button class="btn ghost small" type="button" data-action="messages-load">
-                Listeyi Yukle
+                Listeyi Yükle
               </button>
             </div>
             <div class="admin-status" data-messages-status></div>
@@ -646,6 +820,8 @@ Imza mesaji burada gorunecek.</pre>
         </footer>
       </main>
     </div>
+
+    <div class="admin-modal-overlay" aria-hidden="true"></div>
 
     <script src="app.js"></script>
     <script src="admin.js"></script>

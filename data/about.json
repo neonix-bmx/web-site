@@ -1,35 +1,40 @@
 {
-  "hero": {
-    "eyebrow": "Hakkimizda",
-    "title": "BerryMX: FOSS ve Mühendislik Etiklerine Sadık Profesyonel Ekip",
-    "lead": "BerryMX, 2025 Kasım ayında kurulan, BCMS (Berry Creative Media Solutions) olarak FOSS (Free and Open Source Software) felsefesini benimseyen ve mühendislik etiklerine sadık bir şirketiz. Medya, web siteleri ve bilişim çözümleri alanında 1 yıllık deneyimi ile profesyonel hizmetler sunuyoruz. Hedefimiz, yenilikçi ve etik tabanlı teknolojiler kullanarak müşterilerimize sürdürülebilir ve yüksek performanslı çözümler sunmaktır.",
-    "chips": ["FOSS", "Mühendislik Etikleri", "Sürdürülebilir Teknoloji"]
+  "title": {
+    "tr": "Neon estetik ile işlevsel arayüzler.",
+    "en": "Functional interfaces with a neon aesthetic."
   },
-  "tiles": {
-    "focus": {
-      "kicker": "Vizyonumuz",
-      "badge": "FOSS ve Etik",
-      "title": "Mühendislik Etiklerine Sadık, Açık Kaynak Felsefesiyle Çalışan Profesyonel Ekip",
-      "body": "BerryMX, **açık kaynak** ve **etik tabanlı mühendislik** ilkelerine dayalı çözümler sunar. **Sürdürülebilir teknoloji** ve **mükemmel performans** odaklı projeler geliştiririz."
+  "summary": {
+    "tr": "BerryMX, açık kaynak (FOSS) ve mühendislik etiklerine dayalı çözümler sunan bir şirket olarak medya, web ve bilişim teknolojileri alanında deneyim ile müşterilerimize sürdürülebilir, yüksek performanslı ve etik tabanlı çözümler sunuyoruz. Yenilikçi teknolojiler ve kullanıcı odaklı tasarım ilkelerimizle her projeyi güçlü bir vizyon ile hayata geçiriyoruz.",
+    "en": "BerryMX delivers open-source (FOSS) and engineering-ethics driven solutions across media, web, and software. We focus on sustainable, high-performance, and principled delivery, bringing every project to life with a strong vision and user-first design."
+  },
+  "highlights": {
+    "tr": [
+      "FOSS (Free and Open Source Software) felsefesine sadık kalma",
+      "Yapay zekâ ve veri odaklı çözümler ile yenilikçi yaklaşımlar",
+      "Mühendislik etiklerine ve sürdürülebilirlik ilkelerine uygun çözümler",
+      "Kullanıcı odaklı tasarım ve performans odaklı geliştirme",
+      "Medya ve oyun teknolojileri alanında yaratıcı ve profesyonel çözümler"
+    ],
+    "en": [
+      "Commitment to FOSS (Free and Open Source Software)",
+      "Innovative approaches with AI and data-driven solutions",
+      "Ethical and sustainable engineering practices",
+      "User-focused design and performance-first development",
+      "Creative, professional work in media and gaming technology"
+    ]
+  },
+  "stats": [
+    {
+      "value": { "tr": "10+", "en": "10+" },
+      "label": { "tr": "Devam Eden ve Biten Proje", "en": "Active & Completed Projects" }
     },
-    "stats": {
-      "kicker": "Deneyim ve Başarılarımız",
-      "badge": "Live",
-      "title": "Deneyim ve Başarılarımız",
-      "stats": [
-        { "value": "1+", "label": "Yıl Deneyim" },
-        { "value": "3+", "label": "Tamamlanmış Proje" },
-        { "value": "1", "label": "Sektörde Partner" }
-      ]
+    {
+      "value": { "tr": "5+", "en": "5+" },
+      "label": { "tr": "Ürün ve Hizmet Ailesi", "en": "Product & Service Lines" }
     },
-    "highlights": {
-      "title": "Öne Çıkan Noktalarımız",
-      "items": [
-        "FOSS (Free and Open Source Software) felsefesine sadık kalma",
-        "10+ yıllık medya ve bilişim sektörü deneyimi",
-        "Mühendislik etiklerine uygun profesyonel çözümler",
-        "Yüksek performanslı ve sürdürülebilir teknolojiler"
-      ]
+    {
+      "value": { "tr": "1", "en": "1" },
+      "label": { "tr": "Partner", "en": "Partner" }
     }
-  }
+  ]
 }

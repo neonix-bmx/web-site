@@ -1,3 +1,8 @@
+const root = document.documentElement;
+if (root) {
+  root.classList.add("js");
+}
+
 const navLinks = Array.from(document.querySelectorAll(".nav-tile"));
 const sections = Array.from(
   document.querySelectorAll("section[id], article[id]")
@@ -15,10 +20,141 @@ const projectModalTitle = document.querySelector("#projectModalTitle");
 const projectModalSummary = document.querySelector("#projectModalSummary");
 const projectModalMeta = document.querySelector("#projectModalMeta");
 const projectModalStack = document.querySelector("#projectModalStack");
-const contentTargets = Array.from(
-  document.querySelectorAll("[data-content]")
+const newsModal = document.querySelector("#newsModal");
+const newsModalTitle = document.querySelector("#newsModalTitle");
+const newsModalMeta = document.querySelector("#newsModalMeta");
+const newsModalSummary = document.querySelector("#newsModalSummary");
+const newsModalBody = document.querySelector("#newsModalBody");
+const contentTargets = Array.from(document.querySelectorAll("[data-content]"));
+const hrefTargets = Array.from(document.querySelectorAll("[data-href]"));
+const placeholderTargets = Array.from(
+  document.querySelectorAll("[data-placeholder]")
+);
+const languageButtons = Array.from(
+  document.querySelectorAll("[data-lang-toggle]")
 );
 const isStaticPageContent = document.body?.dataset.pages === "static";
+
+const supportedLanguages = ["tr", "en"];
+const defaultLanguage = "tr";
+const languageStorageKey = "berrymx-language";
+const state = {
+  projects: [],
+  software: [],
+  news: [],
+  about: null,
+  pages: null,
+  seo: null,
+};
+let currentLanguage = "tr";
+
+const uiMessages = {
+  tr: {
+    sent: "Gönderildi",
+    retry: "Tekrar Dene",
+    emptyProjects: "Henüz proje yok.",
+    emptySoftware: "Henüz yazılım yok.",
+    emptyNews: "Henüz haber yok.",
+    download: "İndir",
+    projectFallback: "Proje",
+    softwareFallback: "Yazılım",
+    newsFallback: "Haber",
+  },
+  en: {
+    sent: "Sent",
+    retry: "Try Again",
+    emptyProjects: "No projects yet.",
+    emptySoftware: "No software yet.",
+    emptyNews: "No news yet.",
+    download: "Download",
+    projectFallback: "Project",
+    softwareFallback: "Software",
+    newsFallback: "News",
+  },
+};
+
+const normalizeLanguage = (value) => {
+  if (!value) {
+    return defaultLanguage;
+  }
+  const lang = String(value).toLowerCase().split("-")[0];
+  return supportedLanguages.includes(lang) ? lang : defaultLanguage;
+};
+
+const getStoredLanguage = () => {
+  try {
+    return localStorage.getItem(languageStorageKey);
+  } catch (error) {
+    return null;
+  }
+};
+
+const setStoredLanguage = (lang) => {
+  try {
+    localStorage.setItem(languageStorageKey, lang);
+  } catch (error) {
+    return;
+  }
+};
+
+const getInitialLanguage = () => {
+  const stored = getStoredLanguage();
+  if (stored) {
+    return normalizeLanguage(stored);
+  }
+  const docLang = document.documentElement?.lang;
+  if (docLang) {
+    return normalizeLanguage(docLang);
+  }
+  const browserLang = navigator?.language || "";
+  return normalizeLanguage(browserLang);
+};
+
+currentLanguage = getInitialLanguage();
+
+const getLocalizedValue = (value, lang = currentLanguage) => {
+  if (value === undefined || value === null) {
+    return "";
+  }
+  if (typeof value === "string" || typeof value === "number") {
+    return String(value);
+  }
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (typeof value === "object") {
+    const candidate = value[lang];
+    if (typeof candidate === "string" || typeof candidate === "number") {
+      return String(candidate);
+    }
+    const fallback =
+      value[defaultLanguage] ??
+      value.tr ??
+      value.en;
+    if (typeof fallback === "string" || typeof fallback === "number") {
+      return String(fallback);
+    }
+  }
+  return "";
+};
+
+const getLocalizedArray = (value, lang = currentLanguage) => {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (value && typeof value === "object") {
+    const candidate = value[lang] ?? value[defaultLanguage] ?? value.tr ?? value.en;
+    if (Array.isArray(candidate)) {
+      return candidate;
+    }
+  }
+  return [];
+};
+
+const getUiMessage = (key) => {
+  const messages = uiMessages[currentLanguage] || uiMessages[defaultLanguage];
+  return messages[key] || uiMessages[defaultLanguage][key] || "";
+};
 
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
@@ -73,6 +209,50 @@ if (navLinks.length && sections.length) {
   sections.forEach((section) => observer.observe(section));
 }
 
+const updateLanguageButtons = () => {
+  if (!languageButtons.length) {
+    return;
+  }
+  languageButtons.forEach((button) => {
+    const lang = normalizeLanguage(button.dataset.langToggle);
+    const isActive = lang === currentLanguage;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+};
+
+const applyLanguage = (lang) => {
+  currentLanguage = normalizeLanguage(lang);
+  document.documentElement.lang = currentLanguage;
+  setStoredLanguage(currentLanguage);
+  updateLanguageButtons();
+  applyPageContent(state.pages);
+  renderProjects(projectList, state.projects);
+  renderSoftware(softwareList, state.software);
+  renderNews(newsList, state.news);
+  applyAboutContent(state.about);
+  const resolvedSeo = resolveSeoForPage(state.seo);
+  if (resolvedSeo) {
+    applySeo(resolvedSeo);
+  }
+  const newsSeo = getNewsSeoOverride(state.news);
+  if (newsSeo) {
+    applySeo({ ...(resolvedSeo || {}), ...newsSeo });
+  }
+};
+
+if (languageButtons.length) {
+  languageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.dataset.langToggle;
+      if (!lang) {
+        return;
+      }
+      applyLanguage(lang);
+    });
+  });
+}
+
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -98,12 +278,12 @@ if (contactForm) {
         }
         contactForm.classList.add("sent");
         if (button) {
-          button.textContent = "Gonderildi";
+          button.textContent = getUiMessage("sent");
         }
         contactForm.reset();
       } catch (error) {
         if (button) {
-          button.textContent = "Tekrar Dene";
+          button.textContent = getUiMessage("retry");
         }
       }
     };
@@ -127,6 +307,26 @@ if (projectModal) {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && projectModal.classList.contains("is-open")) {
       closeProjectModal();
+    }
+  });
+}
+
+if (newsModal) {
+  newsModal.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!target) {
+      return;
+    }
+    if (
+      target.matches("[data-modal-close]") ||
+      target.classList.contains("modal-overlay")
+    ) {
+      closeNewsModal();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && newsModal.classList.contains("is-open")) {
+      closeNewsModal();
     }
   });
 }
@@ -199,15 +399,113 @@ const limitItems = (items, limit) => {
   return items.slice(0, limit);
 };
 
+const escapeHtml = (value) =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const sanitizeUrl = (url) => {
+  if (!url) {
+    return "";
+  }
+  const trimmed = String(url).trim();
+  if (!trimmed) {
+    return "";
+  }
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("mailto:")
+  ) {
+    return trimmed;
+  }
+  return "";
+};
+
+const formatInlineMarkdown = (text) => {
+  const escaped = escapeHtml(text);
+  const withCode = escaped.replace(/`([^`]+)`/g, "<code>$1</code>");
+  const withStrong = withCode.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  const withEm = withStrong.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  const withLinks = withEm.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (match, label, url) => {
+      const safeUrl = sanitizeUrl(url);
+      if (!safeUrl) {
+        return label;
+      }
+      return `<a href="${safeUrl}" rel="noopener noreferrer">${label}</a>`;
+    }
+  );
+  return withLinks;
+};
+
+const renderMarkdown = (text) => {
+  if (!text) {
+    return "";
+  }
+  const lines = String(text).split(/\r?\n/);
+  const blocks = [];
+  let listBuffer = [];
+  let paragraphBuffer = [];
+
+  const flushParagraph = () => {
+    if (paragraphBuffer.length) {
+      blocks.push(`<p>${formatInlineMarkdown(paragraphBuffer.join(" "))}</p>`);
+      paragraphBuffer = [];
+    }
+  };
+
+  const flushList = () => {
+    if (listBuffer.length) {
+      const items = listBuffer
+        .map((item) => `<li>${formatInlineMarkdown(item)}</li>`)
+        .join("");
+      blocks.push(`<ul>${items}</ul>`);
+      listBuffer = [];
+    }
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+    if (/^#{1,3}\s/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      const level = trimmed.match(/^#{1,3}/)[0].length;
+      const content = trimmed.replace(/^#{1,3}\s*/, "");
+      blocks.push(`<h${level}>${formatInlineMarkdown(content)}</h${level}>`);
+      return;
+    }
+    if (/^[-*]\s+/.test(trimmed)) {
+      flushParagraph();
+      listBuffer.push(trimmed.replace(/^[-*]\s+/, ""));
+      return;
+    }
+    paragraphBuffer.push(trimmed);
+  });
+
+  flushParagraph();
+  flushList();
+  return blocks.join("");
+};
+
 const formatProject = (project) => {
   if (!project) {
     return "";
   }
   const parts = [
-    project.title,
+    getLocalizedValue(project.title),
     project.year,
-    project.status,
-    Array.isArray(project.stack) ? project.stack.join(" / ") : "",
+    getLocalizedValue(project.status),
+    getLocalizedArray(project.stack).join(" / "),
   ].filter(Boolean);
   return parts.join(" - ");
 };
@@ -216,7 +514,7 @@ const formatProjectMeta = (project) => {
   if (!project) {
     return "";
   }
-  const parts = [project.year, project.status].filter(Boolean);
+  const parts = [project.year, getLocalizedValue(project.status)].filter(Boolean);
   return parts.join(" • ");
 };
 
@@ -224,7 +522,11 @@ const formatSoftware = (software) => {
   if (!software) {
     return "";
   }
-  const parts = [software.name, software.type, software.status].filter(Boolean);
+  const parts = [
+    getLocalizedValue(software.name),
+    getLocalizedValue(software.type),
+    getLocalizedValue(software.status),
+  ].filter(Boolean);
   return parts.join(" - ");
 };
 
@@ -232,7 +534,7 @@ const formatNews = (newsItem) => {
   if (!newsItem) {
     return "";
   }
-  const parts = [newsItem.title, newsItem.date].filter(Boolean);
+  const parts = [getLocalizedValue(newsItem.title), newsItem.date].filter(Boolean);
   return parts.join(" - ");
 };
 
@@ -240,7 +542,7 @@ const formatHighlight = (highlight) => {
   if (!highlight) {
     return "";
   }
-  return String(highlight).trim();
+  return getLocalizedValue(highlight).trim();
 };
 
 const openProjectModal = (project) => {
@@ -248,11 +550,12 @@ const openProjectModal = (project) => {
     return;
   }
   if (projectModalTitle) {
-    projectModalTitle.textContent = project.title ? String(project.title).trim() : "";
+    const title = getLocalizedValue(project.title).trim();
+    projectModalTitle.textContent = title || getUiMessage("projectFallback");
   }
   if (projectModalSummary) {
-    const summary = project.summary ? String(project.summary).trim() : "";
-    projectModalSummary.textContent = summary;
+    const summary = getLocalizedValue(project.summary).trim();
+    projectModalSummary.innerHTML = summary ? renderMarkdown(summary) : "";
     projectModalSummary.style.display = summary ? "block" : "none";
   }
   if (projectModalMeta) {
@@ -262,7 +565,7 @@ const openProjectModal = (project) => {
   }
   if (projectModalStack) {
     projectModalStack.innerHTML = "";
-    const stackItems = Array.isArray(project.stack) ? project.stack : [];
+    const stackItems = getLocalizedArray(project.stack);
     stackItems
       .map((item) => String(item).trim())
       .filter(Boolean)
@@ -287,6 +590,42 @@ const closeProjectModal = () => {
   document.body.classList.remove("modal-open");
 };
 
+const openNewsModal = (newsItem) => {
+  if (!newsModal || !newsItem) {
+    return;
+  }
+  if (newsModalTitle) {
+    const title = getLocalizedValue(newsItem.title).trim();
+    newsModalTitle.textContent = title || getUiMessage("newsFallback");
+  }
+  if (newsModalMeta) {
+    newsModalMeta.textContent = newsItem.date ? String(newsItem.date).trim() : "";
+    newsModalMeta.style.display = newsModalMeta.textContent ? "block" : "none";
+  }
+  if (newsModalSummary) {
+    const summary = getLocalizedValue(newsItem.summary).trim();
+    newsModalSummary.innerHTML = summary ? renderMarkdown(summary) : "";
+    newsModalSummary.style.display = summary ? "block" : "none";
+  }
+  if (newsModalBody) {
+    const body = getLocalizedValue(newsItem.content).trim();
+    newsModalBody.innerHTML = body ? renderMarkdown(body) : "";
+    newsModalBody.style.display = body ? "block" : "none";
+  }
+  newsModal.classList.add("is-open");
+  newsModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+};
+
+const closeNewsModal = () => {
+  if (!newsModal) {
+    return;
+  }
+  newsModal.classList.remove("is-open");
+  newsModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+};
+
 const replaceStats = (container, items) => {
   if (!container || !Array.isArray(items) || items.length === 0) {
     return;
@@ -296,8 +635,8 @@ const replaceStats = (container, items) => {
     if (!item) {
       return;
     }
-    const value = item.value ? String(item.value).trim() : "";
-    const label = item.label ? String(item.label).trim() : "";
+    const value = getLocalizedValue(item.value).trim();
+    const label = getLocalizedValue(item.label).trim();
     if (!value && !label) {
       return;
     }
@@ -318,6 +657,32 @@ const replaceStats = (container, items) => {
   });
 };
 
+const applyAboutContent = (about) => {
+  if (!about || isStaticPageContent) {
+    return;
+  }
+  if (aboutTitle) {
+    const title = getLocalizedValue(about.title).trim();
+    if (title) {
+      aboutTitle.textContent = title;
+    }
+  }
+  if (aboutSummary) {
+    const summary = getLocalizedValue(about.summary).trim();
+    if (summary) {
+      aboutSummary.textContent = summary;
+    }
+  }
+  if (aboutHighlights) {
+    const highlights = getLocalizedArray(about.highlights);
+    replaceList(aboutHighlights, highlights, formatHighlight);
+  }
+  if (aboutStats) {
+    const stats = getLocalizedArray(about.stats);
+    replaceStats(aboutStats, stats);
+  }
+};
+
 const renderProjects = (container, items) => {
   if (!container) {
     return;
@@ -326,7 +691,7 @@ const renderProjects = (container, items) => {
   if (!Array.isArray(items) || items.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty-state";
-    empty.textContent = "Henuz proje yok.";
+    empty.textContent = getUiMessage("emptyProjects");
     container.appendChild(empty);
     return;
   }
@@ -340,13 +705,14 @@ const renderProjects = (container, items) => {
     card.className = "project-card";
     const title = document.createElement("span");
     title.className = "project-title";
-    title.textContent = project.title ? String(project.title).trim() : "Proje";
+    const projectTitle = getLocalizedValue(project.title).trim();
+    title.textContent = projectTitle || getUiMessage("projectFallback");
     const meta = document.createElement("span");
     meta.className = "project-meta";
     meta.textContent = formatProjectMeta(project);
     const stack = document.createElement("span");
     stack.className = "project-stack";
-    const stackItems = Array.isArray(project.stack) ? project.stack : [];
+    const stackItems = getLocalizedArray(project.stack);
     stack.textContent = stackItems
       .map((item) => String(item).trim())
       .filter(Boolean)
@@ -367,10 +733,14 @@ const renderSoftware = (container, items) => {
   if (!container) {
     return;
   }
+  container.innerHTML = "";
   if (!Array.isArray(items) || items.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-state";
+    empty.textContent = getUiMessage("emptySoftware");
+    container.appendChild(empty);
     return;
   }
-  container.innerHTML = "";
   const limited = limitItems(items, getLimit(container)) || [];
   limited.forEach((software) => {
     if (!software) {
@@ -384,11 +754,12 @@ const renderSoftware = (container, items) => {
 
     const name = document.createElement("span");
     name.className = "software-name";
-    name.textContent = software.name ? String(software.name).trim() : "Yazilim";
+    const softwareName = getLocalizedValue(software.name).trim();
+    name.textContent = softwareName || getUiMessage("softwareFallback");
 
     const meta = document.createElement("span");
     meta.className = "software-meta";
-    meta.textContent = [software.type, software.status]
+    meta.textContent = [getLocalizedValue(software.type), getLocalizedValue(software.status)]
       .filter(Boolean)
       .map((value) => String(value).trim())
       .join(" • ");
@@ -396,6 +767,15 @@ const renderSoftware = (container, items) => {
     info.appendChild(name);
     if (meta.textContent) {
       info.appendChild(meta);
+    }
+    const descriptionText = getLocalizedValue(
+      software.description || software.summary
+    ).trim();
+    if (descriptionText) {
+      const description = document.createElement("div");
+      description.className = "software-desc markdown";
+      description.innerHTML = renderMarkdown(descriptionText);
+      info.appendChild(description);
     }
 
     const actions = document.createElement("div");
@@ -407,7 +787,7 @@ const renderSoftware = (container, items) => {
       const download = document.createElement("a");
       download.className = "btn small";
       download.href = downloadUrl;
-      download.textContent = "Indir";
+      download.textContent = getUiMessage("download");
       download.setAttribute("download", "");
       actions.appendChild(download);
     }
@@ -415,6 +795,42 @@ const renderSoftware = (container, items) => {
     row.appendChild(info);
     row.appendChild(actions);
     container.appendChild(row);
+  });
+};
+
+const renderNews = (container, items) => {
+  if (!container) {
+    return;
+  }
+  container.innerHTML = "";
+  if (!Array.isArray(items) || items.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-state";
+    empty.textContent = getUiMessage("emptyNews");
+    container.appendChild(empty);
+    return;
+  }
+  const limited = limitItems(items, getLimit(container)) || [];
+  limited.forEach((newsItem) => {
+    if (!newsItem) {
+      return;
+    }
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "news-item";
+    const title = document.createElement("span");
+    title.className = "news-title";
+    const titleText = getLocalizedValue(newsItem.title).trim();
+    title.textContent = titleText || getUiMessage("newsFallback");
+    const meta = document.createElement("span");
+    meta.className = "news-meta";
+    meta.textContent = newsItem.date ? String(newsItem.date).trim() : "";
+    button.appendChild(title);
+    if (meta.textContent) {
+      button.appendChild(meta);
+    }
+    button.addEventListener("click", () => openNewsModal(newsItem));
+    container.appendChild(button);
   });
 };
 
@@ -430,6 +846,21 @@ const getValueByPath = (source, path) => {
   }, source);
 };
 
+const getPagesRoot = (pages) => {
+  if (!pages || typeof pages !== "object") {
+    return pages;
+  }
+  const candidate = pages[currentLanguage];
+  if (candidate && typeof candidate === "object") {
+    return candidate;
+  }
+  const fallback = pages[defaultLanguage];
+  if (fallback && typeof fallback === "object") {
+    return fallback;
+  }
+  return pages;
+};
+
 const applyPageContent = (pages) => {
   if (
     isStaticPageContent ||
@@ -439,19 +870,48 @@ const applyPageContent = (pages) => {
   ) {
     return;
   }
+  const pagesRoot = getPagesRoot(pages);
   contentTargets.forEach((node) => {
     const path = node.dataset.content;
     if (!path) {
       return;
     }
-    const value = getValueByPath(pages, path);
+    const value =
+      getValueByPath(pagesRoot, path) ?? getValueByPath(pages, path);
     if (value === undefined || value === null) {
       return;
     }
-    if (typeof value === "object") {
+    const localized = getLocalizedValue(value);
+    if (!localized || Array.isArray(localized)) {
       return;
     }
-    node.textContent = String(value);
+    node.textContent = localized;
+  });
+  hrefTargets.forEach((node) => {
+    const path = node.dataset.href;
+    if (!path) {
+      return;
+    }
+    const value =
+      getValueByPath(pagesRoot, path) ?? getValueByPath(pages, path);
+    const href = getLocalizedValue(value);
+    if (!href || Array.isArray(href)) {
+      return;
+    }
+    node.setAttribute("href", href);
+  });
+  placeholderTargets.forEach((node) => {
+    const path = node.dataset.placeholder;
+    if (!path) {
+      return;
+    }
+    const value =
+      getValueByPath(pagesRoot, path) ?? getValueByPath(pages, path);
+    const placeholder = getLocalizedValue(value);
+    if (!placeholder || Array.isArray(placeholder)) {
+      return;
+    }
+    node.setAttribute("placeholder", placeholder);
   });
 };
 
@@ -516,8 +976,12 @@ const getNewsSeoOverride = (newsItems) => {
   if (!match) {
     return null;
   }
-  const title = match.metaTitle || match.title || "";
-  const description = match.metaDescription || match.summary || "";
+  const title =
+    getLocalizedValue(match.metaTitle).trim() ||
+    getLocalizedValue(match.title).trim();
+  const description =
+    getLocalizedValue(match.metaDescription).trim() ||
+    getLocalizedValue(match.summary).trim();
   return {
     title: title ? String(title).trim() : "",
     description: description ? String(description).trim() : "",
@@ -534,39 +998,47 @@ const applySeo = (seo) => {
     return;
   }
 
-  const title = seo.title ? String(seo.title).trim() : "";
+  const title = getLocalizedValue(seo.title).trim();
   if (title) {
     document.title = title;
   }
 
-  const description = seo.description ? String(seo.description).trim() : "";
+  const description = getLocalizedValue(seo.description).trim();
   if (description) {
     setMetaTag("name", "description", description);
     setMetaTag("property", "og:description", description);
     setMetaTag("name", "twitter:description", description);
   }
 
-  const keywords = seo.keywords ? String(seo.keywords).trim() : "";
+  let keywords = "";
+  if (Array.isArray(seo.keywords)) {
+    keywords = seo.keywords
+      .map((entry) => String(entry).trim())
+      .filter(Boolean)
+      .join(", ");
+  } else {
+    keywords = getLocalizedValue(seo.keywords).trim();
+  }
   if (keywords) {
     setMetaTag("name", "keywords", keywords);
   }
 
-  const robots = seo.robots ? String(seo.robots).trim() : "";
+  const robots = getLocalizedValue(seo.robots).trim();
   if (robots) {
     setMetaTag("name", "robots", robots);
   }
 
-  const themeColor = seo.themeColor ? String(seo.themeColor).trim() : "";
+  const themeColor = getLocalizedValue(seo.themeColor).trim();
   if (themeColor) {
     setMetaTag("name", "theme-color", themeColor);
   }
 
-  const siteName = seo.siteName ? String(seo.siteName).trim() : "";
+  const siteName = getLocalizedValue(seo.siteName).trim();
   if (siteName) {
     setMetaTag("property", "og:site_name", siteName);
   }
 
-  const ogType = seo.ogType ? String(seo.ogType).trim() : "";
+  const ogType = getLocalizedValue(seo.ogType).trim();
   if (ogType) {
     setMetaTag("property", "og:type", ogType);
   }
@@ -577,49 +1049,39 @@ const applySeo = (seo) => {
     setMetaTag("name", "twitter:title", ogTitle);
   }
 
-  const ogImage = seo.ogImage ? String(seo.ogImage).trim() : "";
+  const ogImage = getLocalizedValue(seo.ogImage).trim();
   if (ogImage) {
     setMetaTag("property", "og:image", ogImage);
   }
 
-  const ogVideo = seo.ogVideo ? String(seo.ogVideo).trim() : "";
+  const ogVideo = getLocalizedValue(seo.ogVideo).trim();
   if (ogVideo) {
     setMetaTag("property", "og:video", ogVideo);
   }
-  const ogVideoType = seo.ogVideoType
-    ? String(seo.ogVideoType).trim()
-    : "";
+  const ogVideoType = getLocalizedValue(seo.ogVideoType).trim();
   if (ogVideoType) {
     setMetaTag("property", "og:video:type", ogVideoType);
   }
 
-  const twitterImage = seo.twitterImage
-    ? String(seo.twitterImage).trim()
-    : ogImage;
+  const twitterImage = getLocalizedValue(seo.twitterImage).trim() || ogImage;
   if (twitterImage) {
     setMetaTag("name", "twitter:image", twitterImage);
   }
 
-  const twitterPlayer = seo.twitterPlayer
-    ? String(seo.twitterPlayer).trim()
-    : "";
+  const twitterPlayer = getLocalizedValue(seo.twitterPlayer).trim();
   if (twitterPlayer) {
     setMetaTag("name", "twitter:player", twitterPlayer);
   }
 
-  const twitterCard = seo.twitterCard
-    ? String(seo.twitterCard).trim()
-    : "";
+  const twitterCard = getLocalizedValue(seo.twitterCard).trim();
   const resolvedCard =
     twitterCard || (twitterPlayer ? "player" : ogImage ? "summary_large_image" : "");
   if (resolvedCard) {
     setMetaTag("name", "twitter:card", resolvedCard);
   }
 
-  const canonicalBase = seo.canonicalBase
-    ? String(seo.canonicalBase).trim()
-    : "";
-  const canonical = seo.canonical ? String(seo.canonical).trim() : "";
+  const canonicalBase = getLocalizedValue(seo.canonicalBase).trim();
+  const canonical = getLocalizedValue(seo.canonical).trim();
   let canonicalHref = "";
   if (canonicalBase && typeof window !== "undefined") {
     const protocol = window.location ? window.location.protocol : "";
@@ -646,33 +1108,15 @@ const loadContent = async () => {
     fetchJsonWithFallback("seo"),
     fetchJsonWithFallback("pages"),
   ]);
-  renderProjects(projectList, projects);
-  renderSoftware(softwareList, software);
-  replaceLines(
-    newsList,
-    limitItems(news, getLimit(newsList)),
-    formatNews
-  );
-  if (about && !isStaticPageContent) {
-    if (aboutTitle && about.title) {
-      aboutTitle.textContent = String(about.title).trim();
-    }
-    if (aboutSummary && about.summary) {
-      aboutSummary.textContent = String(about.summary).trim();
-    }
-    replaceList(
-      aboutHighlights,
-      limitItems(about.highlights, getLimit(aboutHighlights)),
-      formatHighlight
-    );
-    replaceStats(aboutStats, limitItems(about.stats, getLimit(aboutStats)));
-  }
-  applyPageContent(pages);
-  const resolvedSeo = resolveSeoForPage(seo);
-  applySeo(resolvedSeo);
-  const newsSeo = getNewsSeoOverride(news);
-  if (newsSeo) {
-    applySeo({ ...resolvedSeo, ...newsSeo });
+  state.projects = Array.isArray(projects) ? projects : [];
+  state.software = Array.isArray(software) ? software : [];
+  state.news = Array.isArray(news) ? news : [];
+  state.about = about && typeof about === "object" ? about : null;
+  state.pages = pages && typeof pages === "object" ? pages : null;
+  state.seo = seo && typeof seo === "object" ? seo : null;
+  applyLanguage(currentLanguage);
+  if (document.body) {
+    document.body.classList.add("content-ready");
   }
 };
 
